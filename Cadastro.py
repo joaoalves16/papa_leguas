@@ -814,38 +814,38 @@ class Cadastro:
                             ).click()
                             time.sleep(2)
                             driver.find_element_by_xpath(
-                                "/html/body/div[1]/main/article/div/form/div[2]/div[1]/div/div/div/div/div/div[2]/input"
+                                '//*[@id="sale"]/div[3]/div[1]/div/div/div/div/div/div[2]/input'
                             ).send_keys(str(valor))
                             if condominio != 0:
                                 driver.find_element_by_xpath(
-                                    "/html/body/div[1]/main/article/div/form/div[2]/div[2]/div/div/div/div/div/div[2]/input"
+                                    '//*[@id="sale"]/div[3]/div[2]/div/div/div/div/div/div[2]/input'
                                 ).send_keys(str(condominio))
                             match iptu_pagamento:
                                 case "Anualmente":
                                     driver.find_element_by_xpath(
-                                        "/html/body/div[1]/main/article/div/form/div[3]/div[2]/button[2]"
+                                        "/html/body/div[1]/main/article/div/form/div[4]/div[2]/button[2]"
                                     ).click()
                                     if iptu != 0:
                                         driver.find_element_by_xpath(
-                                            "/html/body/div[1]/main/article/div/form/div[4]/div/div/div[2]/div/div[2]/input"
+                                            "/html/body/div[1]/main/article/div/form/div[5]/div/div/div[2]/div/div[2]/input"
                                         ).send_keys(str(iptu))
                                 case "Não pago":
                                     driver.find_element_by_xpath(
-                                        "/html/body/div[1]/main/article/div/form/disv[3]/div[2]/button[1]"
+                                        "/html/body/div[1]/main/article/div/form/div[4]/div[2]/button[1]"
                                     ).click()
                                 case "Mensalmente":
                                     driver.find_element_by_xpath(
-                                        "/html/body/div[1]/main/article/div/form/div[3]/div[2]/button[3]"
+                                        "/html/body/div[1]/main/article/div/form/div[4]/div[2]/button[3]"
                                     ).click()
                                     driver.find_element_by_xpath(
-                                        "/html/body/div[1]/main/article/div/form/div[4]/div[1]/div/div/div"
+                                        "/html/body/div[1]/main/article/div/form/div[5]/div[1]/div/div/div"
                                     ).click()
                                     driver.find_element_by_xpath(
                                         "/html/body/div[3]/div[3]/ul/li[12]"
                                     ).click()
                                     if iptu != 0:
                                         driver.find_element_by_xpath(
-                                            "/html/body/div[1]/main/article/div/form/div[4]/div[2]/div/div[2]/div/div[2]/input"
+                                            "/html/body/div[1]/main/article/div/form/div[5]/div[2]/div/div[2]/div/div[2]/input"
                                         ).send_keys(str(iptu))
                             try:
                                 WebDriverWait(driver, 10).until(
@@ -857,7 +857,7 @@ class Cadastro:
                                     )
                                 )
                                 # driver.find_element_by_xpath(
-                                #    "/html/body/div[1]/main/footer/div/div/button"
+                                #    "/html/body/div[1]/main/fooclearter/div/div/button"
                                 # ).click()
                             except TimeoutException:
                                 dados[43][index] = "Erro de dados"
