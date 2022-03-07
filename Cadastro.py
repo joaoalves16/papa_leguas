@@ -3,6 +3,7 @@ from selenium.common.exceptions import NoSuchElementException
 from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.support import expected_conditions as ec
 from selenium.webdriver.common.by import By
+from selenium.webdriver.common.keys import Keys
 from datetime import datetime
 import pandas as pd
 import time
@@ -20,6 +21,7 @@ class Cadastro:
     def cadastrar(dados, driver):
         for index, row in dados.iterrows():
             if str(dados[42][index]) == "0":
+                id_imovel_imob = dados[1][index]
                 nome_proprietario = dados[5][index]
                 telefone_proprietario = dados[6][index]
                 email_proprietario = dados[7][index]
@@ -444,6 +446,9 @@ class Cadastro:
                                 )
                                 continue
                         try:
+                            # time.sleep(5000000)
+                            # driver.find_element_by_xpath('/html/body/div[1]/main/article').scroll(0,0)
+                            driver.execute_script("document.getElementsByClassName('fXELdk')[0].scroll(0,0)")
                             WebDriverWait(driver, 60).until(
                                 ec.visibility_of_element_located(
                                     (
@@ -452,6 +457,10 @@ class Cadastro:
                                     )
                                 )
                             )
+                            # print("dorme")
+                            # time.sleep(5000000)
+                            # driver.save_screenshot('error.png')
+                            print("quartos: " + str(quartos))
                             for x in range(0, quartos):
                                 driver.find_element_by_xpath(
                                     "/html/body/div[1]/main/article/div/div[2]/div/form/div[1]/div/div/div/div/button[2]"
@@ -802,6 +811,9 @@ class Cadastro:
                             )
                             continue
                         try:
+                            print('start venda')
+                            driver.save_screenshot('1.png')
+                            # driver.execute_script("document.getElementsByClassName('fXELdk')[0].scroll(0,0)")
                             WebDriverWait(driver, 60).until(
                                 ec.visibility_of_element_located(
                                     (
@@ -857,6 +869,12 @@ class Cadastro:
                                         )
                                     )
                                 )
+                                print("finish imovel " + str(id_imovel_imob))
+
+                                driver.get(
+                                    "https://owner-conversion.quintoandar.com.br/register/new/owner"
+                                )
+                                continue
                                 # driver.find_element_by_xpath(
                                 #    "/html/body/div[1]/main/fooclearter/div/div/button"
                                 # ).click()
