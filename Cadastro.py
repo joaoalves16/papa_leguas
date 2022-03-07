@@ -474,9 +474,10 @@ class Cadastro:
                                 driver.find_element_by_xpath(
                                     "/html/body/div[1]/main/article/div/div[2]/div/form/div[7]/div/div/div/div/button[2]"
                                 ).click()
-                            driver.find_element_by_xpath(
-                                "/html/body/div[1]/main/article/div/div[2]/div/form/div[8]/div/div/div/textarea[1]"
-                            ).send_keys(descricao)
+                            if pd.isna(descricao) == False:
+                                driver.find_element_by_xpath(
+                                    "/html/body/div[1]/main/article/div/div[2]/div/form/div[8]/div/div/div/textarea[1]"
+                                ).send_keys(descricao)
                             if portaria == "Não":
                                 time.sleep(2)
                                 driver.find_element_by_xpath(

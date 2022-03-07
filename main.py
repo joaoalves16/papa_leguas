@@ -1,6 +1,6 @@
 from Cadastro import Cadastro
 from Foto import Foto
-from Autentificao import Autentificao
+from outros.Autentificao import Autentificao
 from selenium import webdriver
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.chrome.service import Service
@@ -20,7 +20,6 @@ chrome_options.add_argument("--user-data-dir=chrome-data")
 s = Service()
 driver = webdriver.Chrome(service=s, options=chrome_options)
 driver.get("https://owner-conversion.quintoandar.com.br/register/new/owner")
-# Autentificao.autentificar(driver)
 try:
     WebDriverWait(driver, 60).until(
         ec.visibility_of_element_located(
