@@ -1,2 +1,6 @@
-[45907:259:0307/162420.356671:INFO:CONSOLE(0)] "[DOM] Input elements should have autocomplete attributes (suggested: "current-password"): (More info: https://goo.gl/9p2vKq) %o", source: https://accounts.google.com/o/oauth2/v2/auth?scope=openid+profile+email&state=_LhD3X9qP6biWlsvAKgETAjmOLG8Dkc6jSfR5rIGpQU.6ZLKgkK1N6g.kong&response_type=code&client_id=537303102115-ra34rnpkgvb2dgjvv62t8btjmp17gttd.apps.googleusercontent.com&redirect_uri=https%3A%2F%2Fsso.quintoandar.com.br%2Fauth%2Frealms%2Fprod%2Fbroker%2Fgoogle%2Fendpoint&nonce=61baeb252767c35ae3139b8ef2534a7a&hd=* (0)
-[45907:259:0307/162423.942582:WARNING:pref_notifier_impl.cc(40)] Pref observer for media_router.cast_allow_all_ips found at shutdown.
+[7055:259:0307/163520.050473:INFO:CONSOLE(2)] "offline-plugin: runtime was installed without OfflinePlugin being added to the webpack.config.js. See https://goo.gl/2Ca7NO for details.", source: https://owner-conversion.quintoandar.com.br/vendor.46e34b7c113d9cc16e3c.chunk.js (2)
+[7055:30723:0307/163522.941893:ERROR:chrome_browser_main_extra_parts_metrics.cc(227)] START: ReportBluetoothAvailability(). If you don't see the END: message, this is crbug.com/1216328.
+[7055:30723:0307/163522.942522:ERROR:chrome_browser_main_extra_parts_metrics.cc(230)] END: ReportBluetoothAvailability()
+[7055:30723:0307/163522.942561:ERROR:chrome_browser_main_extra_parts_metrics.cc(235)] START: GetDefaultBrowser(). If you don't see the END: message, this is crbug.com/1216328.
+[7055:30723:0307/163522.942897:ERROR:chrome_browser_main_extra_parts_metrics.cc(239)] END: GetDefaultBrowser()
+[7055:259:0307/163551.435117:WARNING:pref_notifier_impl.cc(40)] Pref observer for media_router.cast_allow_all_ips found at shutdown.

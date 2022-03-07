@@ -856,9 +856,9 @@ class Cadastro:
                                         )
                                     )
                                 )
-                                driver.find_element_by_xpath(
-                                    "/html/body/div[1]/main/footer/div/div/button"
-                                ).click()
+                                # driver.find_element_by_xpath(
+                                #    "/html/body/div[1]/main/footer/div/div/button"
+                                # ).click()
                             except TimeoutException:
                                 dados[43][index] = "Erro de dados"
                                 dados[42][index] = "1"

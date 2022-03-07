@@ -17,7 +17,7 @@ chrome_options = Options()
 chrome_options.add_argument("--user-data-dir=chrome-data")
 
 s = Service()
-driver = webdriver.Chrome(service=s,options=chrome_options)
+driver = webdriver.Chrome(service=s, options=chrome_options)
 driver.get("https://owner-conversion.quintoandar.com.br/register/new/owner")
 Autentificao.autentificar(driver)
 WebDriverWait(driver, 200).until(

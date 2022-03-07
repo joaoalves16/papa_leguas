@@ -1,2 +1,3 @@
-2022/03/07-16:24:15.825 13103 Creating DB /Users/murilo/workspace/3p/papa_leguas/chrome-data/Default/Site Characteristics Database since it was missing.
-2022/03/07-16:24:15.957 13103 Reusing MANIFEST /Users/murilo/workspace/3p/papa_leguas/chrome-data/Default/Site Characteristics Database/MANIFEST-000001
+2022/03/07-16:35:13.599 e203 Reusing MANIFEST /Users/joaoalves/Projetos/Papa-leguas/chrome-data/Default/Site Characteristics Database/MANIFEST-000001
+2022/03/07-16:35:13.600 e203 Recovering log #3
+2022/03/07-16:35:13.600 e203 Reusing old log /Users/joaoalves/Projetos/Papa-leguas/chrome-data/Default/Site Characteristics Database/000003.log 

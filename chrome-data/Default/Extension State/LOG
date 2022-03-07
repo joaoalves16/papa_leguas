@@ -1,2 +1,3 @@
-2022/03/07-16:24:16.463 d403 Creating DB /Users/murilo/workspace/3p/papa_leguas/chrome-data/Default/Extension State since it was missing.
-2022/03/07-16:24:16.630 d403 Reusing MANIFEST /Users/murilo/workspace/3p/papa_leguas/chrome-data/Default/Extension State/MANIFEST-000001
+2022/03/07-16:35:14.745 c403 Reusing MANIFEST /Users/joaoalves/Projetos/Papa-leguas/chrome-data/Default/Extension State/MANIFEST-000001
+2022/03/07-16:35:14.746 c403 Recovering log #3
+2022/03/07-16:35:14.746 c403 Reusing old log /Users/joaoalves/Projetos/Papa-leguas/chrome-data/Default/Extension State/000003.log 

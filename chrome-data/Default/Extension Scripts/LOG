@@ -1,2 +1,3 @@
-2022/03/07-16:24:15.827 cc03 Creating DB /Users/murilo/workspace/3p/papa_leguas/chrome-data/Default/Extension Scripts since it was missing.
-2022/03/07-16:24:15.991 cc03 Reusing MANIFEST /Users/murilo/workspace/3p/papa_leguas/chrome-data/Default/Extension Scripts/MANIFEST-000001
+2022/03/07-16:26:05.646 e403 Reusing MANIFEST /Users/joaoalves/Projetos/Papa-leguas/chrome-data/Default/Extension Scripts/MANIFEST-000001
+2022/03/07-16:26:05.648 e403 Recovering log #3
+2022/03/07-16:26:05.668 e403 Reusing old log /Users/joaoalves/Projetos/Papa-leguas/chrome-data/Default/Extension Scripts/000003.log 
