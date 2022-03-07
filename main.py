@@ -10,7 +10,7 @@ import pandas as pd
 import time
 
 fotos = pd.read_csv("./arquivos/Fotos.csv", header=None, sep=",", dtype=str)
-dados = pd.read_csv("./arquivos/dados_test2.csv", header=None, sep=",", dtype=str)
+dados = pd.read_csv("./arquivos/Dados.csv", header=None, sep=",", dtype=str)
 s = Service("/usr/local/bin/chromedriver")
 driver = webdriver.Chrome(service=s)
 driver.get("https://owner-conversion.quintoandar.com.br/register/new/owner")
