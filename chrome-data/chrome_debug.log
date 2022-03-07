@@ -1,7 +1,0 @@
-[9553:36359:0307/173610.617461:ERROR:chrome_browser_main_extra_parts_metrics.cc(227)] START: ReportBluetoothAvailability(). If you don't see the END: message, this is crbug.com/1216328.
-[9553:36359:0307/173610.618145:ERROR:chrome_browser_main_extra_parts_metrics.cc(230)] END: ReportBluetoothAvailability()
-[9553:36359:0307/173610.618187:ERROR:chrome_browser_main_extra_parts_metrics.cc(235)] START: GetDefaultBrowser(). If you don't see the END: message, this is crbug.com/1216328.
-[9553:36359:0307/173610.618499:ERROR:chrome_browser_main_extra_parts_metrics.cc(239)] END: GetDefaultBrowser()
-[9553:259:0307/173613.216790:INFO:CONSOLE(2)] "offline-plugin: runtime was installed without OfflinePlugin being added to the webpack.config.js. See https://goo.gl/2Ca7NO for details.", source: https://owner-conversion.quintoandar.com.br/vendor.d54e2e4d5f59446883c2.chunk.js (2)
-[9553:259:0307/173632.379054:INFO:CONSOLE(2)] "Google Maps JavaScript API warning: RetiredVersion https://developers.google.com/maps/documentation/javascript/error-messages#retired-version", source: https://owner-conversion.quintoandar.com.br/vendor.d54e2e4d5f59446883c2.chunk.js (2)
-[9553:259:0307/173730.240151:WARNING:pref_notifier_impl.cc(40)] Pref observer for media_router.cast_allow_all_ips found at shutdown.
