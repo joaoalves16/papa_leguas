@@ -101,9 +101,36 @@ class Foto:
                                     )
                                 except TimeoutException:
                                     break
+                            driver.find_element_by_xpath(
+                                "/html/body/div[8]/div/div/form/div[2]/div[8]/div/div/label[1]"
+                            ).click()
+                            try:
+                                WebDriverWait(driver, 200).until(
+                                    ec.visibility_of_element_located(
+                                        (
+                                            By.XPATH,
+                                            '//*[@id="salvar_publicar"]',
+                                        )
+                                    )
+                                )
+                                driver.find_element_by_xpath(
+                                    '//*[@id="salvar_publicar"]',
+                                ).click()
+                            except TimeoutException:
+                                dados[45][index] = "Não publicado"
+                                dados.to_csv(
+                                    "./arquivos/dados_test.csv",
+                                    header=None,
+                                    sep=",",
+                                    index=False,
+                                )
+                                driver.close()
+                                driver.switch_to.window(driver.window_handles[0])
+                                driver.get("https://user.quintoandar.com.br/admin/menu")
+                            time.sleep(600)
                             dados[45][index] = "ok"
                             dados.to_csv(
-                                "./arquivos/dados_test2.csv",
+                                "./arquivos/dados_test.csv",
                                 header=None,
                                 sep=",",
                                 index=False,
