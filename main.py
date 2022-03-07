@@ -1,6 +1,5 @@
 from Cadastro import Cadastro
 from Foto import Foto
-from outros.Autentificao import Autentificao
 from selenium import webdriver
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.chrome.service import Service
