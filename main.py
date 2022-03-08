@@ -13,18 +13,19 @@ import time
 import sys
 
 
-number = sys.argv[1]
+# number = sys.argv[1]
 fotos = pd.read_csv("./arquivos/Fotos.csv", header=None, sep=",", dtype=str)
-dados = pd.read_csv("./arquivos/data"+number+".csv", header=None, sep=",", dtype=str)
+dados = pd.read_csv("./arquivos/dados.csv", header=None, sep=",", dtype=str)
+# dados = pd.read_csv("./arquivos/data"+number+".csv", header=None, sep=",", dtype=str)
 
 chrome_options = Options()
 chrome_options.add_argument("--user-data-dir=chrome-data")
 chrome_options.add_argument("--headless")
-chrome_options.add_argument('--window-size=1920,1080')
-chrome_options.add_argument('--disable-gpu')
-chrome_options.add_argument('--no-sandbox')
-chrome_options.add_argument('--start-maximized')
-chrome_options.add_argument('--disable-setuid-sandbox')
+chrome_options.add_argument("--window-size=1920,1080")
+chrome_options.add_argument("--disable-gpu")
+chrome_options.add_argument("--no-sandbox")
+chrome_options.add_argument("--start-maximized")
+chrome_options.add_argument("--disable-setuid-sandbox")
 
 s = Service()
 driver = webdriver.Chrome(service=s, options=chrome_options)
@@ -43,7 +44,7 @@ try:
 except TimeoutException:
     driver.get("https://owner-conversion.quintoandar.com.br/register/new/owner")
 
-print("click login_sso");
+print("click login_sso")
 driver.find_element_by_xpath(
     "/html/body/div/div[2]/div/div/div[1]/div[2]/ul/li/a"
 ).click()
@@ -60,11 +61,13 @@ WebDriverWait(driver, 200).until(
 )
 
 # IMÓVEL
-print("start cadastro");
+print("start cadastro")
 try:
     Cadastro.cadastrar(dados, driver)
 except:
-    driver.save_screenshot("./erros/"+datetime.today().strftime("%Y-%m-%d %H:%M"+'.png'))
+    driver.save_screenshot(
+        "./erros/" + datetime.today().strftime("%Y-%m-%d %H:%M" + ".png")
+    )
 
 # FOTO
 # print("start foto");
@@ -73,5 +76,3 @@ except:
 #     Foto.cadastrarFotos(dados, fotos, driver)
 # except:
 #     driver.save_screenshot("./erros/foto-"+datetime.today().strftime("%Y-%m-%d %H:%M"+'.png'))
-
-

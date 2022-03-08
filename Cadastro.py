@@ -197,7 +197,7 @@ class Cadastro:
                                     dados[43][index] = "Mapa não encontrado"
                                     dados[42][index] = "1"
                                     dados.to_csv(
-                                        "./arquivos/dados_test2.csv",
+                                        "./arquivos/dados.csv",
                                         header=None,
                                         sep=",",
                                         index=False,
@@ -213,7 +213,7 @@ class Cadastro:
                                     dados[43][index] = erro_cep
                                     dados[42][index] = "1"
                                     dados.to_csv(
-                                        "./arquivos/dados_test2.csv",
+                                        "./arquivos/dados.csv",
                                         header=None,
                                         sep=",",
                                         index=False,
@@ -232,7 +232,7 @@ class Cadastro:
                                     dados[43][index] = erro_cep
                                     dados[42][index] = "1"
                                     dados.to_csv(
-                                        "./arquivos/dados_test2.csv",
+                                        "./arquivos/dados.csv",
                                         header=None,
                                         sep=",",
                                         index=False,
@@ -320,7 +320,7 @@ class Cadastro:
                                     dados[43][index] = "Mapa não encontrado"
                                     dados[42][index] = "1"
                                     dados.to_csv(
-                                        "./arquivos/dados_test2.csv",
+                                        "./arquivos/dados.csv",
                                         header=None,
                                         sep=",",
                                         index=False,
@@ -336,7 +336,7 @@ class Cadastro:
                                     dados[43][index] = erro_cep
                                     dados[42][index] = "1"
                                     dados.to_csv(
-                                        "./arquivos/dados_test2.csv",
+                                        "./arquivos/dados.csv",
                                         header=None,
                                         sep=",",
                                         index=False,
@@ -355,7 +355,7 @@ class Cadastro:
                                     dados[43][index] = erro_cep
                                     dados[42][index] = "1"
                                     dados.to_csv(
-                                        "./arquivos/dados_test2.csv",
+                                        "./arquivos/dados.csv",
                                         header=None,
                                         sep=",",
                                         index=False,
@@ -374,7 +374,7 @@ class Cadastro:
                                     dados[38][index] = erro_cep
                                     dados[42][index] = "1"
                                     dados.to_csv(
-                                        "./arquivos/dados_test2.csv",
+                                        "./arquivos/dados.csv",
                                         header=None,
                                         sep=",",
                                         index=False,
@@ -448,7 +448,9 @@ class Cadastro:
                         try:
                             # time.sleep(5000000)
                             # driver.find_element_by_xpath('/html/body/div[1]/main/article').scroll(0,0)
-                            driver.execute_script("document.getElementsByClassName('fXELdk')[0].scroll(0,0)")
+                            driver.execute_script(
+                                "document.getElementsByClassName('fXELdk')[0].scroll(0,0)"
+                            )
                             WebDriverWait(driver, 60).until(
                                 ec.visibility_of_element_located(
                                     (
@@ -582,7 +584,7 @@ class Cadastro:
                                         match chave:
                                             case "Chave Comum":
                                                 driver.find_element_by_xpath(
-                                                    "/html/body/div[1]/main/article/div/div[2]/div/form/div[9]/div[3]/div/div/button[1]"
+                                                    "/html/body/div[1]/main/article/div/div[2]/div/form/div[9]/div[4]/div/div/button[1]"
                                                 ).click()
                                                 time.sleep(2)
                                                 driver.find_element_by_xpath(
@@ -711,7 +713,7 @@ class Cadastro:
                                         match chave:
                                             case "Chave Comum":
                                                 driver.find_element_by_xpath(
-                                                    "/html/body/div[1]/main/article/div/div[2]/div/form/div[9]/div[3]/div/div/button[1]"
+                                                    "/html/body/div[1]/main/article/div/div[2]/div/form/div[9]/div[4]/div/div/button[1]"
                                                 ).click()
                                                 time.sleep(2)
                                                 driver.find_element_by_xpath(
@@ -749,7 +751,7 @@ class Cadastro:
                                 "/html/body/div[1]/main/article/div/div[2]/div/form/div[9]/div[5]/div/div/button[1]"
                             ).click()
                             driver.find_element_by_xpath(
-                                "/html/body/div[1]/main/article/div/div[2]/div/form/div[9]/div[6]/div/div/div/textarea[1]"
+                                "/html/body/div[1]/main/article/div/div[2]/div/form/div[9]/div[7]/div/div/div/textarea[1]"
                             ).send_keys(chave_obs)
                             driver.find_element_by_xpath(
                                 "/html/body/div[1]/main/article/div/div[2]/div/form/div[10]/div/div/div/textarea[1]"
@@ -763,7 +765,7 @@ class Cadastro:
                             ] = "Elemento não encontrado na pagina 'Detalhe do imovel'"
                             dados[42][index] = "1"
                             dados.to_csv(
-                                "./arquivos/dados_test2.csv",
+                                "./arquivos/dados.csv",
                                 header=None,
                                 sep=",",
                                 index=False,
@@ -801,7 +803,7 @@ class Cadastro:
                             ] = "Elemento não encontrado na pagina 'Aluguel'"
                             dados[42][index] = "1"
                             dados.to_csv(
-                                "./arquivos/dados_test2.csv",
+                                "./arquivos/dados.csv",
                                 header=None,
                                 sep=",",
                                 index=False,
@@ -811,8 +813,7 @@ class Cadastro:
                             )
                             continue
                         try:
-                            print('start venda')
-                            driver.save_screenshot('1.png')
+                            print("start venda")
                             # driver.execute_script("document.getElementsByClassName('fXELdk')[0].scroll(0,0)")
                             WebDriverWait(driver, 60).until(
                                 ec.visibility_of_element_located(
@@ -882,7 +883,7 @@ class Cadastro:
                                 dados[43][index] = "Erro de dados"
                                 dados[42][index] = "1"
                                 dados.to_csv(
-                                    "./arquivos/dados_test2.csv",
+                                    "./arquivos/dados.csv",
                                     header=None,
                                     sep=",",
                                     index=False,
@@ -897,7 +898,7 @@ class Cadastro:
                             ] = "Elemento não encontrado na pagina 'Venda'"
                             dados[42][index] = "1"
                             dados.to_csv(
-                                "./arquivos/dados_test2.csv",
+                                "./arquivos/dados.csv",
                                 header=None,
                                 sep=",",
                                 index=False,
@@ -926,7 +927,7 @@ class Cadastro:
                                 "%Y-%m-%d %H:%M"
                             )
                             dados.to_csv(
-                                "./arquivos/dados_test2.csv",
+                                "./arquivos/dados.csv",
                                 header=None,
                                 sep=",",
                                 index=False,
@@ -956,7 +957,7 @@ class Cadastro:
                                 except TimeoutException:
                                     dados[43][index] = "Tarefa não encontrada"
                                     dados.to_csv(
-                                        "./arquivos/dados_test2.csv",
+                                        "./arquivos/dados.csv",
                                         header=None,
                                         sep=",",
                                         index=False,
@@ -999,7 +1000,7 @@ class Cadastro:
                                         ] = "Caixa de comentario não encontrada"
                                         dados[42][index] = "1"
                                         dados.to_csv(
-                                            "./arquivos/dados_test2.csv",
+                                            "./arquivos/dados.csv",
                                             header=None,
                                             sep=",",
                                             index=False,
@@ -1024,7 +1025,7 @@ class Cadastro:
                                         index
                                     ] = "Botão de cancelamento de tarefa não encontrado"
                                     dados.to_csv(
-                                        "./arquivos/dados_test2.csv",
+                                        "./arquivos/dados.csv",
                                         header=None,
                                         sep=",",
                                         index=False,
@@ -1037,7 +1038,7 @@ class Cadastro:
                                 dados[43][index] = "Barra de pesquisa não encontrada"
                                 dados[42][index] = "1"
                                 dados.to_csv(
-                                    "./arquivos/dados_test2.csv",
+                                    "./arquivos/dados.csv",
                                     header=None,
                                     sep=",",
                                     index=False,
@@ -1050,7 +1051,7 @@ class Cadastro:
                             dados[43][index] = "Erro na confirmação"
                             dados[42][index] = "1"
                             dados.to_csv(
-                                "./arquivos/dados_test2.csv",
+                                "./arquivos/dados.csv",
                                 header=None,
                                 sep=",",
                                 index=False,
@@ -1063,7 +1064,7 @@ class Cadastro:
                         dados[43][index] = "Erro cadastro proprietário"
                         dados[42][index] = "1"
                         dados.to_csv(
-                            "./arquivos/dados_test2.csv",
+                            "./arquivos/dados.csv",
                             header=None,
                             sep=",",
                             index=False,
@@ -1075,7 +1076,7 @@ class Cadastro:
                     dados[43][index] = "Pagina de proprietario não carregou"
                     dados[42][index] = "1"
                     dados.to_csv(
-                        "./arquivos/dados_test2.csv", header=None, sep=",", index=False
+                        "./arquivos/dados.csv", header=None, sep=",", index=False
                     )
                     driver.get(
                         "https://owner-conversion.quintoandar.com.br/register/new/owner"
