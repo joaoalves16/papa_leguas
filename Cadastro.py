@@ -23,7 +23,13 @@ class Cadastro:
         number = sys.argv[1]
         for index, row in dados.iterrows():
             if str(dados[42][index]) == "0":
-                dados[42][index] = 'E'
+                dados[42][index] = "E"
+                dados.to_csv(
+                    "./arquivos/dados" + number + ".csv",
+                    header=None,
+                    sep=",",
+                    index=False,
+                )
                 id_imovel_imob = dados[1][index]
                 nome_proprietario = dados[5][index]
                 telefone_proprietario = dados[6][index]
@@ -877,14 +883,14 @@ class Cadastro:
                                         )
                                     )
                                 )
-
                                 # driver.get(
                                 #     "https://owner-conversion.quintoandar.com.br/register/new/owner"
                                 # )
                                 # continue
                                 driver.find_element_by_xpath(
-                                   "/html/body/div[1]/main/fooclearter/div/div/button"
+                                    "/html/body/div[1]/main/footer/div/div/button"
                                 ).click()
+
                                 print("finish imovel " + str(id_imovel_imob))
                             except TimeoutException:
                                 dados[43][index] = "Erro de dados"
@@ -929,6 +935,7 @@ class Cadastro:
                             id_imovel = id_imovel.replace(
                                 "Sessão de fotos do imóvel ", ""
                             )
+                            print(id_imovel)
                             dados[42][index] = id_imovel
                             dados[44][index] = datetime.today().strftime(
                                 "%Y-%m-%d %H:%M"
