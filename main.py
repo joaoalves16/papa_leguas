@@ -33,6 +33,7 @@ s = Service()
 driver = webdriver.Chrome(service=s, options=chrome_options)
 driver.get("https://owner-conversion.quintoandar.com.br/register/new/owner")
 # AUTENTICACAO
+print(":: start AUTENTICACAO ::")
 try:
     WebDriverWait(driver, 60).until(
         ec.visibility_of_element_located(
@@ -49,7 +50,6 @@ driver.find_element_by_xpath(
     "/html/body/div/div[2]/div/div/div[1]/div[2]/ul/li/a"
 ).click()
 print("wait login_sso")
-print(driver.current_url)
 WebDriverWait(driver, 200).until(
     ec.visibility_of_element_located(
         (
@@ -62,19 +62,11 @@ WebDriverWait(driver, 200).until(
 
 def run_cadastro(dados, driver):
     try:
-        print("start CADASTRO")
+        print(":: start CADASTRO ::")
         Cadastro.cadastrar(dados, driver)
     except:
         driver.save_screenshot(
             "./erros/" + datetime.today().strftime("%Y-%m-%d %H:%M" + ".png")
-        )
-        dados[43][index] = "Execucao interrompida"
-        dados[42][index] = "1"
-        dados.to_csv(
-            "./arquivos/dados.csv",
-            header=None,
-            sep=",",
-            index=False,
         )
         driver.get("https://owner-conversion.quintoandar.com.br/register/new/owner")
         run_cadastro(dados, driver)

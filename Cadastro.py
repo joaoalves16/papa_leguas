@@ -23,6 +23,7 @@ class Cadastro:
         number = sys.argv[1]
         for index, row in dados.iterrows():
             if str(dados[42][index]) == "0":
+                dados[42][index] = 'E'
                 id_imovel_imob = dados[1][index]
                 nome_proprietario = dados[5][index]
                 telefone_proprietario = dados[6][index]
@@ -876,15 +877,15 @@ class Cadastro:
                                         )
                                     )
                                 )
-                                print("finish imovel " + str(id_imovel_imob))
 
-                                driver.get(
-                                    "https://owner-conversion.quintoandar.com.br/register/new/owner"
-                                )
-                                continue
-                                # driver.find_element_by_xpath(
-                                #    "/html/body/div[1]/main/fooclearter/div/div/button"
-                                # ).click()
+                                # driver.get(
+                                #     "https://owner-conversion.quintoandar.com.br/register/new/owner"
+                                # )
+                                # continue
+                                driver.find_element_by_xpath(
+                                   "/html/body/div[1]/main/fooclearter/div/div/button"
+                                ).click()
+                                print("finish imovel " + str(id_imovel_imob))
                             except TimeoutException:
                                 dados[43][index] = "Erro de dados"
                                 dados[42][index] = "1"
