@@ -13,10 +13,10 @@ import time
 import sys
 
 
-# number = sys.argv[1]
+number = sys.argv[1]
 fotos = pd.read_csv("./arquivos/Fotos.csv", header=None, sep=",", dtype=str)
-dados = pd.read_csv("./arquivos/dados.csv", header=None, sep=",", dtype=str)
-# dados = pd.read_csv("./arquivos/data"+number+".csv", header=None, sep=",", dtype=str)
+# dados = pd.read_csv("./arquivos/dados.csv", header=None, sep=",", dtype=str)
+dados = pd.read_csv("./arquivos/dados"+number+".csv", header=None, sep=",", dtype=str)
 
 chrome_options = Options()
 chrome_options.add_argument("--user-data-dir=chrome-data")
@@ -60,14 +60,19 @@ WebDriverWait(driver, 200).until(
     )
 )
 
+def run_cadastro(dados, driver):
+    try:
+        print("start CADASTRO")
+        Cadastro.cadastrar(dados, driver)
+    except:
+        driver.save_screenshot(
+            "./erros/" + datetime.today().strftime("%Y-%m-%d %H:%M" + ".png")
+        )
+        print("DEU ERRO")
+        run_cadastro(dados, driver)
+
 # IMÓVEL
-print("start cadastro")
-try:
-    Cadastro.cadastrar(dados, driver)
-except:
-    driver.save_screenshot(
-        "./erros/" + datetime.today().strftime("%Y-%m-%d %H:%M" + ".png")
-    )
+run_cadastro(dados, driver)
 
 # FOTO
 # print("start foto");
