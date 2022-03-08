@@ -7,6 +7,7 @@ from selenium.webdriver.common.keys import Keys
 from datetime import datetime
 import pandas as pd
 import time
+import sys
 
 
 def check_exists_by_xpath(xpath, webdriver):
@@ -19,6 +20,7 @@ def check_exists_by_xpath(xpath, webdriver):
 
 class Cadastro:
     def cadastrar(dados, driver):
+        number = sys.argv[1]
         for index, row in dados.iterrows():
             if str(dados[42][index]) == "0":
                 id_imovel_imob = dados[1][index]
@@ -199,7 +201,7 @@ class Cadastro:
                                     dados[43][index] = "Mapa não encontrado"
                                     dados[42][index] = "1"
                                     dados.to_csv(
-                                        "./arquivos/dados.csv",
+                                        "./arquivos/dados" + number + ".csv",
                                         header=None,
                                         sep=",",
                                         index=False,
@@ -215,7 +217,7 @@ class Cadastro:
                                     dados[43][index] = erro_cep
                                     dados[42][index] = "1"
                                     dados.to_csv(
-                                        "./arquivos/dados.csv",
+                                        "./arquivos/dados" + number + ".csv",
                                         header=None,
                                         sep=",",
                                         index=False,
@@ -234,7 +236,7 @@ class Cadastro:
                                     dados[43][index] = erro_cep
                                     dados[42][index] = "1"
                                     dados.to_csv(
-                                        "./arquivos/dados.csv",
+                                        "./arquivos/dados" + number + ".csv",
                                         header=None,
                                         sep=",",
                                         index=False,
@@ -323,7 +325,7 @@ class Cadastro:
                                     dados[43][index] = "Mapa não encontrado"
                                     dados[42][index] = "1"
                                     dados.to_csv(
-                                        "./arquivos/dados.csv",
+                                        "./arquivos/dados" + number + ".csv",
                                         header=None,
                                         sep=",",
                                         index=False,
@@ -339,7 +341,7 @@ class Cadastro:
                                     dados[43][index] = erro_cep
                                     dados[42][index] = "1"
                                     dados.to_csv(
-                                        "./arquivos/dados.csv",
+                                        "./arquivos/dados" + number + ".csv",
                                         header=None,
                                         sep=",",
                                         index=False,
@@ -358,7 +360,7 @@ class Cadastro:
                                     dados[43][index] = erro_cep
                                     dados[42][index] = "1"
                                     dados.to_csv(
-                                        "./arquivos/dados.csv",
+                                        "./arquivos/dados" + number + ".csv",
                                         header=None,
                                         sep=",",
                                         index=False,
@@ -377,7 +379,7 @@ class Cadastro:
                                     dados[38][index] = erro_cep
                                     dados[42][index] = "1"
                                     dados.to_csv(
-                                        "./arquivos/dados.csv",
+                                        "./arquivos/dados" + number + ".csv",
                                         header=None,
                                         sep=",",
                                         index=False,
@@ -510,7 +512,7 @@ class Cadastro:
                                                 ).click()
                                                 time.sleep(2)
                                                 driver.find_element_by_xpath(
-                                                    "/html/body/div[1]/main/article/div/div[2]/div/form/div[9]/div[4]/div/div/button[2]"
+                                                    "/html/body/div[1]/main/article/div/div[2]/div/form/div[9]/div[4]/div/div/button"
                                                 ).click()
                                             case "Senha":
                                                 driver.find_element_by_xpath(
@@ -769,7 +771,7 @@ class Cadastro:
                             ] = "Elemento não encontrado na pagina 'Detalhe do imovel'"
                             dados[42][index] = "1"
                             dados.to_csv(
-                                "./arquivos/dados.csv",
+                                "./arquivos/dados" + number + ".csv",
                                 header=None,
                                 sep=",",
                                 index=False,
@@ -807,7 +809,7 @@ class Cadastro:
                             ] = "Elemento não encontrado na pagina 'Aluguel'"
                             dados[42][index] = "1"
                             dados.to_csv(
-                                "./arquivos/dados.csv",
+                                "./arquivos/dados" + number + ".csv",
                                 header=None,
                                 sep=",",
                                 index=False,
@@ -887,7 +889,7 @@ class Cadastro:
                                 dados[43][index] = "Erro de dados"
                                 dados[42][index] = "1"
                                 dados.to_csv(
-                                    "./arquivos/dados.csv",
+                                    "./arquivos/dados" + number + ".csv",
                                     header=None,
                                     sep=",",
                                     index=False,
@@ -902,7 +904,7 @@ class Cadastro:
                             ] = "Elemento não encontrado na pagina 'Venda'"
                             dados[42][index] = "1"
                             dados.to_csv(
-                                "./arquivos/dados.csv",
+                                "./arquivos/dados" + number + ".csv",
                                 header=None,
                                 sep=",",
                                 index=False,
@@ -931,7 +933,7 @@ class Cadastro:
                                 "%Y-%m-%d %H:%M"
                             )
                             dados.to_csv(
-                                "./arquivos/dados.csv",
+                                "./arquivos/dados" + number + ".csv",
                                 header=None,
                                 sep=",",
                                 index=False,
@@ -961,7 +963,7 @@ class Cadastro:
                                 except TimeoutException:
                                     dados[43][index] = "Tarefa não encontrada"
                                     dados.to_csv(
-                                        "./arquivos/dados.csv",
+                                        "./arquivos/dados" + number + ".csv",
                                         header=None,
                                         sep=",",
                                         index=False,
@@ -1004,7 +1006,7 @@ class Cadastro:
                                         ] = "Caixa de comentario não encontrada"
                                         dados[42][index] = "1"
                                         dados.to_csv(
-                                            "./arquivos/dados.csv",
+                                            "./arquivos/dados" + number + ".csv",
                                             header=None,
                                             sep=",",
                                             index=False,
@@ -1029,7 +1031,7 @@ class Cadastro:
                                         index
                                     ] = "Botão de cancelamento de tarefa não encontrado"
                                     dados.to_csv(
-                                        "./arquivos/dados.csv",
+                                        "./arquivos/dados" + number + ".csv",
                                         header=None,
                                         sep=",",
                                         index=False,
@@ -1042,7 +1044,7 @@ class Cadastro:
                                 dados[43][index] = "Barra de pesquisa não encontrada"
                                 dados[42][index] = "1"
                                 dados.to_csv(
-                                    "./arquivos/dados.csv",
+                                    "./arquivos/dados" + number + ".csv",
                                     header=None,
                                     sep=",",
                                     index=False,
@@ -1055,7 +1057,7 @@ class Cadastro:
                             dados[43][index] = "Erro na confirmação"
                             dados[42][index] = "1"
                             dados.to_csv(
-                                "./arquivos/dados.csv",
+                                "./arquivos/dados" + number + ".csv",
                                 header=None,
                                 sep=",",
                                 index=False,
@@ -1068,7 +1070,7 @@ class Cadastro:
                         dados[43][index] = "Erro cadastro proprietário"
                         dados[42][index] = "1"
                         dados.to_csv(
-                            "./arquivos/dados.csv",
+                            "./arquivos/dados" + number + ".csv",
                             header=None,
                             sep=",",
                             index=False,
@@ -1080,7 +1082,10 @@ class Cadastro:
                     dados[43][index] = "Pagina de proprietario não carregou"
                     dados[42][index] = "1"
                     dados.to_csv(
-                        "./arquivos/dados.csv", header=None, sep=",", index=False
+                        "./arquivos/dados" + number + ".csv",
+                        header=None,
+                        sep=",",
+                        index=False,
                     )
                     driver.get(
                         "https://owner-conversion.quintoandar.com.br/register/new/owner"

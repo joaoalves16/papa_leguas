@@ -16,7 +16,9 @@ import sys
 number = sys.argv[1]
 fotos = pd.read_csv("./arquivos/Fotos.csv", header=None, sep=",", dtype=str)
 # dados = pd.read_csv("./arquivos/dados.csv", header=None, sep=",", dtype=str)
-dados = pd.read_csv("./arquivos/dados"+number+".csv", header=None, sep=",", dtype=str)
+dados = pd.read_csv(
+    "./arquivos/dados" + number + ".csv", header=None, sep=",", dtype=str
+)
 
 chrome_options = Options()
 chrome_options.add_argument("--user-data-dir=chrome-data")
@@ -30,7 +32,6 @@ chrome_options.add_argument("--disable-setuid-sandbox")
 s = Service()
 driver = webdriver.Chrome(service=s, options=chrome_options)
 driver.get("https://owner-conversion.quintoandar.com.br/register/new/owner")
-
 # AUTENTICACAO
 try:
     WebDriverWait(driver, 60).until(
@@ -43,12 +44,10 @@ try:
     )
 except TimeoutException:
     driver.get("https://owner-conversion.quintoandar.com.br/register/new/owner")
-
 print("click login_sso")
 driver.find_element_by_xpath(
     "/html/body/div/div[2]/div/div/div[1]/div[2]/ul/li/a"
 ).click()
-
 print("wait login_sso")
 print(driver.current_url)
 WebDriverWait(driver, 200).until(
@@ -60,6 +59,7 @@ WebDriverWait(driver, 200).until(
     )
 )
 
+
 def run_cadastro(dados, driver):
     try:
         print("start CADASTRO")
@@ -68,8 +68,17 @@ def run_cadastro(dados, driver):
         driver.save_screenshot(
             "./erros/" + datetime.today().strftime("%Y-%m-%d %H:%M" + ".png")
         )
-        print("DEU ERRO")
+        dados[43][index] = "Execucao interrompida"
+        dados[42][index] = "1"
+        dados.to_csv(
+            "./arquivos/dados.csv",
+            header=None,
+            sep=",",
+            index=False,
+        )
+        driver.get("https://owner-conversion.quintoandar.com.br/register/new/owner")
         run_cadastro(dados, driver)
+
 
 # IMÓVEL
 run_cadastro(dados, driver)
