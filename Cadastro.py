@@ -755,7 +755,7 @@ class Cadastro:
                                 "/html/body/div[1]/main/article/div/div[2]/div/form/div[9]/div[5]/div/div/button[1]"
                             ).click()
                             driver.find_element_by_xpath(
-                                "/html/body/div[1]/main/article/div/div[2]/div/form/div[9]/div[7]/div/div/div"
+                                "//textarea[@name='additionalInfo']"
                             ).send_keys(chave_obs)
                             driver.find_element_by_xpath(
                                 "/html/body/div[1]/main/article/div/div[2]/div/form/div[10]/div/div/div/textarea[1]"
