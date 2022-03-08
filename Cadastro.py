@@ -58,6 +58,7 @@ class Cadastro:
                             )
                         )
                     )
+                    print("start dados proprietario")
                     driver.find_element_by_xpath(
                         "/html/body/div[1]/main/article/div/div[3]/div/form/div[1]/div/div/div/div/input"
                     ).send_keys(nome_proprietario)
@@ -169,6 +170,7 @@ class Cadastro:
                                         )
                                     )
                                 )
+                                print("start localizacao")
                                 match tipo:
                                     case "Casa":
                                         driver.find_element_by_xpath(
@@ -292,6 +294,7 @@ class Cadastro:
                                         )
                                     )
                                 )
+                                print("start localizacao")
                                 match tipo:
                                     case "Apartamento":
                                         driver.find_element_by_xpath(
@@ -462,7 +465,8 @@ class Cadastro:
                             # print("dorme")
                             # time.sleep(5000000)
                             # driver.save_screenshot('error.png')
-                            print("quartos: " + str(quartos))
+
+                            print("start detalhes do imovel")
                             for x in range(0, quartos):
                                 driver.find_element_by_xpath(
                                     "/html/body/div[1]/main/article/div/div[2]/div/form/div[1]/div/div/div/div/button[2]"
@@ -751,7 +755,7 @@ class Cadastro:
                                 "/html/body/div[1]/main/article/div/div[2]/div/form/div[9]/div[5]/div/div/button[1]"
                             ).click()
                             driver.find_element_by_xpath(
-                                "/html/body/div[1]/main/article/div/div[2]/div/form/div[9]/div[7]/div/div/div/textarea[1]"
+                                "/html/body/div[1]/main/article/div/div[2]/div/form/div[9]/div[7]/div/div/div"
                             ).send_keys(chave_obs)
                             driver.find_element_by_xpath(
                                 "/html/body/div[1]/main/article/div/div[2]/div/form/div[10]/div/div/div/textarea[1]"
