@@ -64,22 +64,40 @@ class Foto:
                                 )
                             )
                         )
-                        driver.find_element_by_xpath(
-                            "/html/body/div[9]/div/div/form/div[2]/div[7]/div[6]/div[5]/div/label/div"
-                        ).click()
-                        caminho = (
-                            os.path.dirname(os.path.realpath(__file__))
-                            + "/imag/"
-                            + id_imovel
-                            + "/1.jpg"
-                        )
-                        print(caminho)
-                        pyautogui.write(caminho)
-                        time.sleep(1)
-                        pyautogui.press("enter")
-                        time.sleep(2)
-                        pyautogui.hotkey("command", "a")
-                        pyautogui.press("enter")
+                        # driver.find_element_by_xpath(
+                        #     "/html/body/div[9]/div/div/form/div[2]/div[7]/div[6]/div[5]/div/label/div"
+                        # ).click()
+
+                        # caminho = (
+                        #     os.path.dirname(os.path.realpath(__file__))
+                        #     + "/imag/"
+                        #     + id_imovel
+                        #     + "/1.jpg"
+                        # )
+                        # print(caminho)
+
+                        # dragdrop = driver.find_element_by_id('input-fotos')
+                        caminho_atual = os.path.dirname(os.path.realpath(__file__)) + "/imag/" + id_imovel
+                        # time.sleep(100000)
+                        for fotos in os.listdir(caminho_atual):
+                            print(caminho_atual + '/' + fotos)
+                            driver.find_element_by_id('input-fotos').send_keys(caminho_atual + '/' + fotos)
+                            WebDriverWait(driver, 10).until(
+                                ec.invisibility_of_element_located(
+                                    (By.XPATH, "/html/body/div[15]")
+                                )
+                            )
+                            # time.sleep(5)
+
+
+                        # time.sleep(10000)
+                        # time.sleep(3)
+                        # pyautogui.write(caminho)
+                        # time.sleep(1)
+                        # pyautogui.press("enter")
+                        # time.sleep(2)
+                        # pyautogui.hotkey("command", "a")
+                        # pyautogui.press("enter")
                         try:
                             WebDriverWait(driver, 3).until(ec.alert_is_present())
                             alert = driver.switch_to.alert
@@ -87,24 +105,25 @@ class Foto:
                         except TimeoutException:
                             print("no alert")
                         try:
-                            WebDriverWait(driver, 10).until(
-                                ec.visibility_of_element_located(
-                                    (By.XPATH, "/html/body/div[15]")
-                                )
-                            )
-                            while True:
-                                try:
-                                    WebDriverWait(driver, 3).until(
-                                        ec.visibility_of_element_located(
-                                            (By.XPATH, "/html/body/div[15]")
-                                        )
-                                    )
-                                except TimeoutException:
-                                    break
-                            driver.find_element_by_xpath(
-                                "/html/body/div[8]/div/div/form/div[2]/div[8]/div/div/label[1]"
-                            ).click()
+                            # WebDriverWait(driver, 10).until(
+                            #     ec.visibility_of_element_located(
+                            #         (By.XPATH, "/html/body/div[15]")
+                            #     )
+                            # )
+                            # while True:
+                            #     try:
+                            #         WebDriverWait(driver, 3).until(
+                            #             ec.visibility_of_element_located(
+                            #                 (By.XPATH, "/html/body/div[15]")
+                            #             )
+                            #         )
+                            #     except TimeoutException:
+                            #         break
+                            # driver.find_element_by_xpath(
+                            #     "/html/body/div[8]/div/div/form/div[2]/div[8]/div/div/label[1]"
+                            # ).click()
                             try:
+                                print("aguardando botao salvar")
                                 WebDriverWait(driver, 200).until(
                                     ec.visibility_of_element_located(
                                         (
@@ -113,9 +132,11 @@ class Foto:
                                         )
                                     )
                                 )
-                                driver.find_element_by_xpath(
-                                    '//*[@id="salvar_publicar"]',
-                                ).click()
+                                #finish
+                                print("finish imagem imob ("+id_imovel_imob+") 5A ("+id_imovel+")")
+                                # driver.find_element_by_xpath(
+                                #     '//*[@id="salvar_publicar"]',
+                                # ).click()
                             except TimeoutException:
                                 dados[45][index] = "Não publicado"
                                 dados.to_csv(
