@@ -1050,7 +1050,6 @@ class Cadastro:
                                     continue
                             except TimeoutException:
                                 dados[43][index] = "Barra de pesquisa não encontrada"
-                                dados[42][index] = "1"
                                 dados.to_csv(
                                     "./arquivos/dados" + number + ".csv",
                                     header=None,
