@@ -53,14 +53,14 @@ WebDriverWait(driver, 200).until(
     ec.visibility_of_element_located(
         (
             By.XPATH,
-            "//html/body/div[1]/main/article/div/div[3]/div/form/div[1]/div/div/div/div/input",
+            "//html/body/div[1]/main/article",
         )
     )
 )
 
 
 # FOTO
-print("start foto")
+print(":: start FOTO ::")
 # try:
 driver.get("https://user.quintoandar.com.br/admin/menu")
 Foto.cadastrarFotos(dados, fotos, driver)
