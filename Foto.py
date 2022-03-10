@@ -16,7 +16,7 @@ pyautogui.FAILSAFE = False
 def auto_down(url,filename):
     try:
         urllib.request.urlretrieve(url, filename)
-    except urllib.ContentTooShortError:
+    except:
         print('Network conditions is not good.Reloading.')
         auto_down(url,filename)
 
@@ -123,7 +123,7 @@ class Foto:
                         )
 
                         driver.execute_script("window.scrollTo(0, document.body.scrollHeight)")
-                        time.sleep(2)
+                        time.sleep(4)
                         hoverboy = driver.find_element_by_xpath(
                             "/html/body/div[8]/div/div/form/div[2]/div[7]/div[6]/div[5]/div/div/div[1]"
                         )
