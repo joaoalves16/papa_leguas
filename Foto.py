@@ -226,7 +226,12 @@ class Foto:
                         # driver.find_element_by_xpath('/html/body/div[9]/div/div/form/div[2]/div[5]/div/div[2]/div[1]/div[1]/label').click()
 
                         # NOVA PAG PUBLICAR
-                        driver.get("https://user.quintoandar.com.br/imovel/editar/"+id_imovel+"/fotos")
+
+                        # tenta entrar 2x na pag publicacao, se n conseguir o script para
+                        try:
+                            driver.get("https://user.quintoandar.com.br/imovel/editar/"+id_imovel+"/fotos")
+                        except:
+                            driver.get("https://user.quintoandar.com.br/imovel/editar/"+id_imovel+"/fotos")
 
                         WebDriverWait(driver, 60).until(
                             ec.visibility_of_element_located(
