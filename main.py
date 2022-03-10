@@ -9,7 +9,9 @@ from selenium.webdriver.support import expected_conditions as ec
 from selenium.webdriver.common.by import By
 from selenium.common.exceptions import TimeoutException
 import pandas as pd
+import logging
 import time
+import traceback
 import sys
 
 
@@ -64,7 +66,8 @@ def run_cadastro(dados, driver):
     try:
         print(":: start CADASTRO ::")
         Cadastro.cadastrar(dados, driver)
-    except:
+    except Exception as e:
+        logging.error(traceback.format_exc())
         driver.save_screenshot(
             "./erros/" + datetime.today().strftime("%Y-%m-%d %H:%M" + ".png")
         )

@@ -43,8 +43,10 @@ class Foto:
 
                 # tenta entrar 2x na pag, se n conseguir o script para
                 try:
+                    print('enter url "fotografo/uploadFoto"')
                     driver.get("https://user.quintoandar.com.br/fotografo/uploadFoto/" + id_imovel)
                 except:
+                    print('retry url "fotografo/uploadFoto"')
                     driver.get("https://user.quintoandar.com.br/fotografo/uploadFoto/" + id_imovel)
 
                 #iniciar download fotos
@@ -61,7 +63,7 @@ class Foto:
                     filename_atual = pasta + "/" + str(cont) + ".jpg"
                     if os.path.isfile(filename_atual) == False:
                         if has_images == False:
-                            print("start photo")
+                            print("download photo")
                         has_images = True
                         print(str(cont))
                         save_name = pasta + "/" + str(cont) + ".jpg"
@@ -70,7 +72,7 @@ class Foto:
                     cont += 1
 
                 #print info de imagens
-                print("\ntotal:"+str(cont)+", "+str(down)+" down, "+str(total_images)+" exists")
+                print("\ntotal:"+str(cont-1)+", "+str(down)+" down, "+str(total_images)+" exists")
                 # else:
                 #     print("error sem_fotos_encontradas")
                 #     dados[45][index] = "erro-sem_imgs"
@@ -90,10 +92,10 @@ class Foto:
                     #         )
                     #     )
                     # )
-                    # driver.find_element_by_xpath(
+                    # driver.find_element(By.XPATH,
                     #     "/html/body/div[10]/div/div[2]/div[2]/form/div[2]/ul/li[1]/input"
                     # ).send_keys(id_imovel)
-                    # driver.find_element_by_xpath(
+                    # driver.find_element(By.XPATH,
                     #     "/html/body/div[10]/div/div[2]/div[2]/form/div[1]/input"
                     # ).click()
                     try:
@@ -105,7 +107,7 @@ class Foto:
                         #         )
                         #     )
                         # )
-                        # driver.find_element_by_xpath(
+                        # driver.find_element(By.XPATH,
                         #     "/html/body/div[10]/div/div[11]/ul/li/div[2]/div/div[1]/div/div[1]/a[2]/span/i"
                         # ).click()
                         # driver.switch_to.window(driver.window_handles[1])
@@ -179,31 +181,32 @@ class Foto:
                         )
                         time.sleep(1)
 
-
-                        hoverboy = driver.find_element_by_xpath(
+                        # hover na miniatura para aparecer opcoes
+                        hoverboy = driver.find_element(By.XPATH,
                             "//div[@class='img-view-container ']"
                         )
                         hov = ActionChains(driver).move_to_element(hoverboy)
                         hov.perform()
                         time.sleep(2)
 
-
+                        # clica no link para definir capa para abrir aba
                         WebDriverWait(driver, 10).until(
                             ec.visibility_of_element_located(
                                 (By.XPATH, '//a[@data-original-title="Definir como capa"]')
                             )
                         )
+                        driver.find_element(By.XPATH, '//a[@data-original-title="Definir como capa"]').click()
 
-                        driver.find_element_by_xpath('//a[@data-original-title="Definir como capa"]').click()
-
+                        # clica no button dentro da aba para salvar capa
                         WebDriverWait(driver, 10).until(
                             ec.visibility_of_element_located(
                                 (By.XPATH, "//button[contains(text(), 'Salvar Capa')]")
                             )
                         )
                         time.sleep(4)
-                        driver.find_element_by_xpath("//button[contains(text(), 'Salvar Capa')]").click()
+                        driver.find_element(By.XPATH, "//button[contains(text(), 'Salvar Capa')]").click()
 
+                        #
                         # time.sleep(10000)
                         imagens_restantes = os.listdir(caminho_atual)[0:-1]
                         print(imagens_restantes)
@@ -223,7 +226,7 @@ class Foto:
                             )
                         )
 
-                        # driver.find_element_by_xpath('/html/body/div[9]/div/div/form/div[2]/div[5]/div/div[2]/div[1]/div[1]/label').click()
+                        # driver.find_element(By.XPATH, '/html/body/div[9]/div/div/form/div[2]/div[5]/div/div[2]/div[1]/div[1]/label').click()
 
                         # NOVA PAG PUBLICAR
 
@@ -270,7 +273,7 @@ class Foto:
                         # driver.execute_script("window.scrollTo(0, document.body.scrollHeight)")
                         # time.sleep(2)
 
-                        # driver.find_element_by_xpath(
+                        # driver.find_element(By.XPATH,
                         #     '//*[@id="salvar_publicar"]',
                         # ).click()
 

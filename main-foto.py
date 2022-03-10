@@ -9,7 +9,9 @@ from selenium.webdriver.support import expected_conditions as ec
 from selenium.webdriver.common.by import By
 from selenium.common.exceptions import TimeoutException
 import pandas as pd
+import logging
 import time
+import traceback
 import sys
 
 
@@ -45,7 +47,7 @@ try:
 except TimeoutException:
     driver.get("https://owner-conversion.quintoandar.com.br/register/new/owner")
 print("click login_sso")
-driver.find_element_by_xpath(
+driver.find_element(By.XPATH,
     "/html/body/div/div[2]/div/div/div[1]/div[2]/ul/li/a"
 ).click()
 print("wait login_sso")
@@ -58,11 +60,16 @@ WebDriverWait(driver, 200).until(
     )
 )
 
+# FOTOS
+def run_foto(dados, driver):
+    try:
+        print(":: start FOTO ::")
+        Foto.cadastrarFotos(dados, fotos, driver)
+    except Exception as e:
+        logging.error(traceback.format_exc())
+        driver.save_screenshot(
+            "./erros/foto-" + datetime.today().strftime("%Y-%m-%d %H:%M" + ".png")
+        )
+        run_foto(dados, driver)
 
-# FOTO
-print(":: start FOTO ::")
-# try:
-# driver.get("https://user.quintoandar.com.br/admin/menu")
-Foto.cadastrarFotos(dados, fotos, driver)
-# except:
-#     driver.save_screenshot("./erros/foto-"+datetime.today().strftime("%Y-%m-%d %H:%M"+'.png'))
+run_foto(dados, driver)
