@@ -102,6 +102,17 @@ class Foto:
                             + id_imovel
                         )
 
+                        if len(os.listdir(caminho_atual)) == 0:
+                            print("error sem_fotos_encontradas")
+                            dados[45][index] = "erro-sem_imgs"
+                            dados.to_csv(
+                                "./arquivos/dados" + number + ".csv",
+                                header=None,
+                                sep=",",
+                                index=False,
+                            )
+                            continue
+
                         driver.find_element_by_id("input-fotos").send_keys(
                             caminho_atual + "/1.jpg"
                         )
