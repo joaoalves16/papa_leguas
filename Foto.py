@@ -327,3 +327,5 @@ class Foto:
                         salvar_erro(dados,number,index,"pag_fotos", "pag_fotos")
                 except TimeoutException:
                     salvar_erro(dados,number,index,"pesq_id", "pesq_id")
+        print('-- Finalizado --')
+        print('-- Happy Ending :) --')
