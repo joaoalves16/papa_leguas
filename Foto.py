@@ -13,6 +13,12 @@ import sys
 
 pyautogui.FAILSAFE = False
 
+def auto_down(url,filename):
+    try:
+        urllib.request.urlretrieve(url, filename)
+    except urllib.ContentTooShortError:
+        print('Network conditions is not good.Reloading.')
+        auto_down(url,filename)
 
 class Foto:
     def cadastrarFotos(dados, fotos, driver):
@@ -31,28 +37,28 @@ class Foto:
                     + id_imovel
                     + ")"
                 )
+                print("start download_photos")
+                pasta = "./imag/" + id_imovel + "/"
                 if os.path.isdir(check_file) != True:
-                    print("start download_photos")
-                    founded = fotos.loc[fotos[0] == id_imovel_imob]
-                    if len(founded) > 0:
-                        links = founded[1]
-                        pasta = "./imag/" + id_imovel + "/"
-                        os.mkdir(pasta)
-                        for link in links:
-                            print("start photo"+str(cont))
-                            save_name = pasta + "/" + str(cont) + ".jpg"
-                            urllib.request.urlretrieve(link, save_name)
-                            cont += 1
-                    else:
-                        print("error sem_fotos_encontradas")
-                        dados[45][index] = "erro-sem_imgs"
-                        dados.to_csv(
-                            "./arquivos/dados" + number + ".csv",
-                            header=None,
-                            sep=",",
-                            index=False,
-                        )
-                        continue
+                    os.mkdir(pasta)
+
+                for link in fotos.loc[fotos[0] == id_imovel_imob][1]:
+                    filename_atual = pasta + "/" + str(cont) + ".jpg"
+                    if os.path.isfile(filename_atual) == False:
+                        print("start photo"+str(cont))
+                        save_name = pasta + "/" + str(cont) + ".jpg"
+                        auto_down(link, save_name)
+                    cont += 1
+                # else:
+                #     print("error sem_fotos_encontradas")
+                #     dados[45][index] = "erro-sem_imgs"
+                #     dados.to_csv(
+                #         "./arquivos/dados" + number + ".csv",
+                #         header=None,
+                #         sep=",",
+                #         index=False,
+                #     )
+                #     continue
                 try:
                     WebDriverWait(driver, 200).until(
                         ec.visibility_of_element_located(
