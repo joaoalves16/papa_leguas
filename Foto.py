@@ -70,8 +70,13 @@ class Foto:
                     print('enter url "fotografo/uploadFoto"')
                     driver.get("https://user.quintoandar.com.br/fotografo/uploadFoto/" + id_imovel)
                 except:
-                    print('retry url "fotografo/uploadFoto"')
-                    driver.get("https://user.quintoandar.com.br/fotografo/uploadFoto/" + id_imovel)
+                    try:
+                        print('retry url "fotografo/uploadFoto"')
+                        driver.get("https://user.quintoandar.com.br/fotografo/uploadFoto/" + id_imovel)
+                    except:
+                        print('abort url "fotografo/uploadFoto"')
+                        salvar_erro(dados, number, index, 'abort_404', 'abort_404')
+                        continue
 
                 #iniciar download fotos
                 print("start download_photos")
