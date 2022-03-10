@@ -63,22 +63,22 @@ class Cadastro:
                         ec.visibility_of_element_located(
                             (
                                 By.XPATH,
-                                "/html/body/div[1]/main/article/div/div[3]/div/form/div[1]/div/div/div/div/input",
+                                "/html/body/div[1]/main/article/div/div[3]/div/form/div[1]/div/div/div/div/div/input",
                             )
                         )
                     )
                     print("start dados proprietario")
                     driver.find_element_by_xpath(
-                        "/html/body/div[1]/main/article/div/div[3]/div/form/div[1]/div/div/div/div/input"
+                        "/html/body/div[1]/main/article/div/div[3]/div/form/div[1]/div/div/div/div/div/input"
                     ).send_keys(nome_proprietario)
                     driver.find_element_by_xpath(
-                        "/html/body/div[1]/main/article/div/div[3]/div/form/div[2]/div/div/div/div/input"
+                        "/html/body/div[1]/main/article/div/div[3]/div/form/div[2]/div/div/div/div/div/input"
                     ).send_keys(str(telefone_proprietario))
                     driver.find_element_by_xpath(
-                        "/html/body/div[1]/main/article/div/div[3]/div/form/div[4]/div/div/div/div/input"
+                        "/html/body/div[1]/main/article/div/div[3]/div/form/div[4]/div/div/div/div/div/input"
                     ).send_keys(email_proprietario)
                     driver.find_element_by_xpath(
-                        "/html/body/div[1]/main/article/div/div[3]/div/form/div[5]/div/div/div/button[1]"
+                        "/html/body/div[1]/main/article/div/div[3]/div/form/div[5]/div/div/div/div/button[1]"
                     ).click()
                     driver.find_element_by_xpath(
                         "/html/body/div[1]/main/footer/div/div[1]/button"
@@ -175,7 +175,7 @@ class Cadastro:
                                     ec.visibility_of_element_located(
                                         (
                                             By.XPATH,
-                                            "/html/body/div[1]/main/article/div/div/div[2]/form/div[1]/div/div/button[3]",
+                                            "/html/body/div[1]/main/article/div/div/div[2]/form/div[1]/div/div/div/button[3]",
                                         )
                                     )
                                 )
@@ -183,17 +183,17 @@ class Cadastro:
                                 match tipo:
                                     case "Casa":
                                         driver.find_element_by_xpath(
-                                            "/html/body/div[1]/main/article/div/div/div[2]/form/div[1]/div/div/button[3]"
+                                            "/html/body/div[1]/main/article/div/div/div[2]/form/div[1]/div/div/div/button[3]"
                                         ).click()
                                     case "Casaemcondominio":
                                         driver.find_element_by_xpath(
-                                            "/html/body/div[1]/main/article/div/div/div[2]/form/div[1]/div/div/button[4]"
+                                            "/html/body/div[1]/main/article/div/div/div[2]/form/div[1]/div/div/div/button[4]"
                                         ).click()
                                 driver.find_element_by_xpath(
-                                    "/html/body/div[1]/main/article/div/div/div[2]/form/div[2]/div[1]/div[2]/label[2]/span[1]"
+                                    "/html/body/div[1]/main/article/div/div/div[2]/form/div[2]/div[1]/div[2]/div/label[2]/span[1]"
                                 ).click()
                                 driver.find_element_by_xpath(
-                                    "/html/body/div[1]/main/article/div/div/div[2]/form/div[2]/div[2]/div/div/input"
+                                    "/html/body/div[1]/main/article/div/div/div[2]/form/div[2]/div[2]/div/div/div/input"
                                 ).send_keys(str(cep))
                                 try:
                                     WebDriverWait(driver, 60).until(
@@ -263,11 +263,11 @@ class Cadastro:
                                             )
                                         )
                                         driver.find_element_by_xpath(
-                                            "/html/body/div[1]/main/article/div/div/div[2]/form/div[2]/div[3]/div/div[3]/div/div/div/div/input"
+                                            "/html/body/div[1]/main/article/div/div/div[2]/form/div[2]/div[3]/div/div[3]/div/div/div/div/div/input"
                                         ).send_keys(str(numero))
                                         if str(complemento) != "nan":
                                             driver.find_element_by_xpath(
-                                                "/html/body/div[1]/main/article/div/div/div[2]/form/div[2]/div[3]/div/div[4]/div/div/div/div/input"
+                                                "/html/body/div[1]/main/article/div/div/div[2]/form/div[2]/div[3]/div/div[4]/div/div/div/div/div/input"
                                             ).send_keys(complemento)
                                         driver.find_element_by_xpath(
                                             "/html/body/div[1]/main/article/div/div/div[2]/form/div[3]/div/div[2]/div[1]/label/span[1]"
@@ -299,7 +299,7 @@ class Cadastro:
                                     ec.visibility_of_element_located(
                                         (
                                             By.XPATH,
-                                            "/html/body/div[1]/main/article/div/div/div[2]/form/div[1]/div/div/button[1]",
+                                            "/html/body/div[1]/main/article/div/div/div[2]/form/div[1]/div/div/div/button[1]",
                                         )
                                     )
                                 )
@@ -307,17 +307,17 @@ class Cadastro:
                                 match tipo:
                                     case "Apartamento":
                                         driver.find_element_by_xpath(
-                                            "/html/body/div[1]/main/article/div/div/div[2]/form/div[1]/div/div/button[1]"
+                                            "/html/body/div[1]/main/article/div/div/div[2]/form/div[1]/div/div/div/button[1]"
                                         ).click()
                                     case "Kitnet":
                                         driver.find_element_by_xpath(
-                                            "/html/body/div[1]/main/article/div/div/div[2]/form/div[1]/div/div/button[2]"
+                                            "/html/body/div[1]/main/article/div/div/div[2]/form/div[1]/div/div/div/button[2]"
                                         ).click()
                                 driver.find_element_by_xpath(
-                                    "/html/body/div[1]/main/article/div/div/div[2]/form/div[2]/div[1]/div[2]/label[2]/span[1]"
+                                    "/html/body/div[1]/main/article/div/div/div[2]/form/div[2]/div[1]/div[2]/div/label[2]/span[1]"
                                 ).click()
                                 driver.find_element_by_xpath(
-                                    "/html/body/div[1]/main/article/div/div/div[2]/form/div[2]/div[2]/div/div/input"
+                                    "/html/body/div[1]/main/article/div/div/div[2]/form/div[2]/div[2]/div/div/div/input"
                                 ).send_keys(str(cep))
                                 try:
                                     WebDriverWait(driver, 60).until(
@@ -401,19 +401,19 @@ class Cadastro:
                                             ec.visibility_of_element_located(
                                                 (
                                                     By.XPATH,
-                                                    "/html/body/div[1]/main/article/div/div/div[2]/form/div[2]/div[3]/div/div[5]/div/div/div/div/input",
+                                                    "/html/body/div[1]/main/article/div/div/div[2]/form/div[3]/div/div[2]/div[1]/label/span[1]",
                                                 )
                                             )
                                         )
                                         driver.find_element_by_xpath(
-                                            "/html/body/div[1]/main/article/div/div/div[2]/form/div[2]/div[3]/div/div[3]/div/div/div/div/input"
+                                            "/html/body/div[1]/main/article/div/div/div[2]/form/div[2]/div[3]/div/div[3]/div/div/div/div/div/input"
                                         ).send_keys(str(numero))
                                         driver.find_element_by_xpath(
-                                            "/html/body/div[1]/main/article/div/div/div[2]/form/div[2]/div[3]/div/div[4]/div/div/div/div/input"
+                                            "/html/body/div[1]/main/article/div/div/div[2]/form/div[2]/div[3]/div/div[4]/div/div/div/div/div/input"
                                         ).send_keys(str(andar))
                                         if str(complemento) != "nan":
                                             driver.find_element_by_xpath(
-                                                "/html/body/div[1]/main/article/div/div/div[2]/form/div[2]/div[3]/div/div[5]/div/div/div/div/input"
+                                                "/html/body/div[1]/main/article/div/div/div[2]/form/div[2]/div[3]/div/div[5]/div/div/div/div/div/input"
                                             ).send_keys(complemento)
                                         try:
                                             WebDriverWait(driver, 60).until(
@@ -458,8 +458,6 @@ class Cadastro:
                                 )
                                 continue
                         try:
-                            # time.sleep(5000000)
-                            # driver.find_element_by_xpath('/html/body/div[1]/main/article').scroll(0,0)
                             driver.execute_script(
                                 "document.getElementsByClassName('fXELdk')[0].scroll(0,0)"
                             )
@@ -467,307 +465,303 @@ class Cadastro:
                                 ec.visibility_of_element_located(
                                     (
                                         By.XPATH,
-                                        "/html/body/div[1]/main/article/div/div[2]/div/form/div[1]/div/div/div/div/button[2]",
+                                        "/html/body/div[1]/main/article/div/div[2]/div/form/div[1]/div/div/div/div/div/button[2]",
                                     )
                                 )
                             )
-                            # print("dorme")
-                            # time.sleep(5000000)
-                            # driver.save_screenshot('error.png')
-
                             print("start detalhes do imovel")
                             for x in range(0, quartos):
                                 driver.find_element_by_xpath(
-                                    "/html/body/div[1]/main/article/div/div[2]/div/form/div[1]/div/div/div/div/button[2]"
+                                    "/html/body/div[1]/main/article/div/div[2]/div/form/div[1]/div/div/div/div/div/button[2]"
                                 ).click()
                             for x in range(0, banheiros):
                                 driver.find_element_by_xpath(
-                                    "/html/body/div[1]/main/article/div/div[2]/div/form/div[3]/div/div/div/div/button[2]"
+                                    "/html/body/div[1]/main/article/div/div[2]/div/form/div[3]/div/div/div/div/div/button[2]"
                                 ).click()
                             for x in range(0, suites):
                                 driver.find_element_by_xpath(
-                                    "/html/body/div[1]/main/article/div/div[2]/div/form/div[2]/div/div/div/div/button[2]"
+                                    "/html/body/div[1]/main/article/div/div[2]/div/form/div[2]/div/div/div/div/div/button[2]"
                                 ).click()
                             driver.find_element_by_xpath(
-                                "/html/body/div[1]/main/article/div/div[2]/div/form/div[4]/div/div/div/div/input"
+                                "/html/body/div[1]/main/article/div/div[2]/div/form/div[4]/div/div/div/div/div/input"
                             ).send_keys(str(metros))
                             driver.find_element_by_xpath(
-                                "/html/body/div[1]/main/article/div/div[2]/div/form/div[5]/div/div/button[1]"
+                                "/html/body/div[1]/main/article/div/div[2]/div/form/div[5]/div/div/div/button[1]"
                             ).click()
                             for x in range(0, vagas):
                                 driver.find_element_by_xpath(
-                                    "/html/body/div[1]/main/article/div/div[2]/div/form/div[7]/div/div/div/div/button[2]"
+                                    "/html/body/div[1]/main/article/div/div[2]/div/form/div[7]/div/div/div/div/div/button[2]"
                                 ).click()
                             if pd.isna(descricao) == False:
                                 driver.find_element_by_xpath(
-                                    "/html/body/div[1]/main/article/div/div[2]/div/form/div[8]/div/div/div/textarea[1]"
+                                    "/html/body/div[1]/main/article/div/div[2]/div/form/div[8]/div/div/div/div/textarea[1]"
                                 ).send_keys(descricao)
                             if portaria == "Não":
                                 time.sleep(2)
                                 driver.find_element_by_xpath(
-                                    "/html/body/div[1]/main/article/div/div[2]/div/form/div[9]/div[1]/div/div/button[4]"
+                                    "/html/body/div[1]/main/article/div/div[2]/div/form/div[9]/div[1]/div/div/div/button[4]"
                                 ).click()
                                 match morador:
                                     case "DESOCUPADO":
                                         driver.find_element_by_xpath(
-                                            "/html/body/div[1]/main/article/div/div[2]/div/form/div[9]/div[2]/div/div/button[3]"
+                                            "/html/body/div[1]/main/article/div/div[2]/div/form/div[9]/div[2]/div/div/div/button[3]"
                                         ).click()
                                         match chave:
                                             case str("Chave Comum"):
                                                 driver.find_element_by_xpath(
-                                                    "/html/body/div[1]/main/article/div/div[2]/div/form/div[9]/div[3]/div/div/button[1]"
+                                                    "/html/body/div[1]/main/article/div/div[2]/div/form/div[9]/div[3]/div/div/div/button[1]"
                                                 ).click()
                                                 time.sleep(2)
                                                 driver.find_element_by_xpath(
-                                                    "/html/body/div[1]/main/article/div/div[2]/div/form/div[9]/div[4]/div/div/button"
+                                                    "/html/body/div[1]/main/article/div/div[2]/div/form/div[9]/div[4]/div/div/div/div/button"
                                                 ).click()
-                                            case "Senha":
-                                                driver.find_element_by_xpath(
-                                                    "/html/body/div[1]/main/article/div/div[2]/div/form/div[9]/div[3]/div/div/button[2]"
-                                                ).click()
-                                                if senha_obs == "Sim":
-                                                    driver.find_element_by_xpath(
-                                                        "/html/body/div[1]/main/article/div/div[2]/div/form/div[9]/div[4]/div/div/button[1]"
-                                                    ).click()
-                                                    driver.find_element_by_xpath(
-                                                        "/html/body/div[1]/main/article/div/div[2]/div/form/div[9]/div[5]/div/div/div/div/input"
-                                                    ).send_keys(senha)
-                                                    driver.find_element_by_xpath(
-                                                        "/html/body/div[1]/main/article/div/div[2]/div/form/div[9]/div[5]/div/div/button"
-                                                    ).click()
-                                                else:
-                                                    driver.find_element_by_xpath(
-                                                        "/html/body/div[1]/main/article/div/div[2]/div/form/div[9]/div[4]/div/div/button[2]"
-                                                    ).click()
-                                            case "Biometria":
-                                                driver.find_element_by_xpath(
-                                                    "/html/body/div[1]/main/article/div/div[2]/div/form/div[9]/div[3]/div/div/button[3]"
-                                                ).click()
-                                                driver.find_element_by_xpath(
-                                                    "/html/body/div[1]/main/article/div/div[2]/div/form/div[9]/div[5]/div/div/button"
-                                                ).click()
+                                            # case "Senha":
+                                            # driver.find_element_by_xpath(
+                                            #    "/html/body/div[1]/main/article/div/div[2]/div/form/div[9]/div[3]/div/div/button[2]"
+                                            # ).click()
+                                            # if senha_obs == "Sim":
+                                            #    driver.find_element_by_xpath(
+                                            #        "/html/body/div[1]/main/article/div/div[2]/div/form/div[9]/div[4]/div/div/button[1]"
+                                            #    ).click()
+                                            #    driver.find_element_by_xpath(
+                                            #        "/html/body/div[1]/main/article/div/div[2]/div/form/div[9]/div[5]/div/div/div/div/input"
+                                            #    ).send_keys(senha)
+                                            #    driver.find_element_by_xpath(
+                                            #        "/html/body/div[1]/main/article/div/div[2]/div/form/div[9]/div[5]/div/div/button"
+                                            #    ).click()
+                                            # else:
+                                            #    driver.find_element_by_xpath(
+                                            #        "/html/body/div[1]/main/article/div/div[2]/div/form/div[9]/div[4]/div/div/button[2]"
+                                            #    ).click()
+                                            # case "Biometria":
+                                            # driver.find_element_by_xpath(
+                                            #    "/html/body/div[1]/main/article/div/div[2]/div/form/div[9]/div[3]/div/div/button[3]"
+                                            # ).click()
+                                            # driver.find_element_by_xpath(
+                                            #    "/html/body/div[1]/main/article/div/div[2]/div/form/div[9]/div[5]/div/div/button"
+                                            # ).click()
                                     case "PROPRIETÁRIO":
                                         driver.find_element_by_xpath(
-                                            "/html/body/div[1]/main/article/div/div[2]/div/form/div[9]/div[2]/div/div/button[2]"
+                                            "/html/body/div[1]/main/article/div/div[2]/div/form/div[9]/div[2]/div/div/div/button[2]"
                                         ).click()
                                         match chave:
                                             case "Chave Comum":
                                                 driver.find_element_by_xpath(
-                                                    "/html/body/div[1]/main/article/div/div[2]/div/form/div[9]/div[3]/div/div/button[1]"
+                                                    "/html/body/div[1]/main/article/div/div[2]/div/form/div[9]/div[3]/div/div/div/button[1]"
                                                 ).click()
                                                 time.sleep(2)
                                                 driver.find_element_by_xpath(
-                                                    "/html/body/div[1]/main/article/div/div[2]/div/form/div[9]/div[4]/div/div/button"
+                                                    "/html/body/div[1]/main/article/div/div[2]/div/form/div[9]/div[4]/div/div/div/div/button"
                                                 ).click()
-                                            case "Senha":
-                                                driver.find_element_by_xpath(
-                                                    "/html/body/div[1]/main/article/div/div[2]/div/form/div[9]/div[3]/div/div/button[2]"
-                                                ).click()
-                                                if senha_obs == "Sim":
-                                                    driver.find_element_by_xpath(
-                                                        "/html/body/div[1]/main/article/div/div[2]/div/form/div[9]/div[4]/div/div/button[1]"
-                                                    ).click()
-                                                    driver.find_element_by_xpath(
-                                                        "/html/body/div[1]/main/article/div/div[2]/div/form/div[9]/div[5]/div/div/div/div/input"
-                                                    ).send_keys(senha)
-                                                    driver.find_element_by_xpath(
-                                                        "/html/body/div[1]/main/article/div/div[2]/div/form/div[9]/div[5]/div/div/button"
-                                                    ).click()
-                                                else:
-                                                    driver.find_element_by_xpath(
-                                                        "/html/body/div[1]/main/article/div/div[2]/div/form/div[9]/div[4]/div/div/button[2]"
-                                                    ).click()
-                                                    driver.find_element_by_xpath(
-                                                        "/html/body/div[1]/main/article/div/div[2]/div/form/div[9]/div[5]/div/div/button"
-                                                    ).click()
-                                            case "Biometria":
-                                                driver.find_element_by_xpath(
-                                                    "/html/body/div[1]/main/article/div/div[2]/div/form/div[9]/div[3]/div/div/button[3]"
-                                                ).click()
-                                                driver.find_element_by_xpath(
-                                                    "/html/body/div[1]/main/article/div/div[2]/div/form/div[9]/div[5]/div/div/button"
-                                                ).click()
+                                            # case "Senha":
+                                            #    driver.find_element_by_xpath(
+                                            #        "/html/body/div[1]/main/article/div/div[2]/div/form/div[9]/div[3]/div/div/button[2]"
+                                            #    ).click()
+                                            #    if senha_obs == "Sim":
+                                            #        driver.find_element_by_xpath(
+                                            #            "/html/body/div[1]/main/article/div/div[2]/div/form/div[9]/div[4]/div/div/button[1]"
+                                            #        ).click()
+                                            #        driver.find_element_by_xpath(
+                                            #            "/html/body/div[1]/main/article/div/div[2]/div/form/div[9]/div[5]/div/div/div/div/input"
+                                            #        ).send_keys(senha)
+                                            #        driver.find_element_by_xpath(
+                                            #            "/html/body/div[1]/main/article/div/div[2]/div/form/div[9]/div[5]/div/div/button"
+                                            #        ).click()
+                                            #    else:
+                                            #        driver.find_element_by_xpath(
+                                            #            "/html/body/div[1]/main/article/div/div[2]/div/form/div[9]/div[4]/div/div/button[2]"
+                                            #        ).click()
+                                            #        driver.find_element_by_xpath(
+                                            #            "/html/body/div[1]/main/article/div/div[2]/div/form/div[9]/div[5]/div/div/button"
+                                            #        ).click()
+                                            # case "Biometria":
+                                            #    driver.find_element_by_xpath(
+                                            #        "/html/body/div[1]/main/article/div/div[2]/div/form/div[9]/div[3]/div/div/button[3]"
+                                            #    ).click()
+                                            #    driver.find_element_by_xpath(
+                                            #        "/html/body/div[1]/main/article/div/div[2]/div/form/div[9]/div[5]/div/div/button"
+                                            #    ).click()
                                     case "INQUILINO":
                                         driver.find_element_by_xpath(
-                                            "/html/body/div[1]/main/article/div/div[2]/div/form/div[9]/div[2]/div/div/button[1]"
+                                            "/html/body/div[1]/main/article/div/div[2]/div/form/div[9]/div[2]/div/div/div/button[1]"
                                         ).click()
                                         driver.find_element_by_xpath(
-                                            "/html/body/div[1]/main/article/div/div[2]/div/form/div[9]/div[3]/div/div/div/div/input"
+                                            "/html/body/div[1]/main/article/div/div[2]/div/form/div[9]/div[3]/div/div/div/div/div/input"
                                         ).send_keys(data_saida)
                                         match chave:
                                             case "Chave Comum":
                                                 driver.find_element_by_xpath(
-                                                    "/html/body/div[1]/main/article/div/div[2]/div/form/div[9]/div[4]/div/div/button[1]"
+                                                    "/html/body/div[1]/main/article/div/div[2]/div/form/div[9]/div[4]/div/div/div/button[1]"
                                                 ).click()
                                                 time.sleep(2)
                                                 driver.find_element_by_xpath(
-                                                    "/html/body/div[1]/main/article/div/div[2]/div/form/div[9]/div[5]/div/div/button"
+                                                    "/html/body/div[1]/main/article/div/div[2]/div/form/div[9]/div[5]/div/div/div/div/button"
                                                 ).click()
-                                            case "Senha":
-                                                driver.find_element_by_xpath(
-                                                    "/html/body/div[1]/main/article/div/div[2]/div/form/div[9]/div[3]/div/div/button[2]"
-                                                ).click()
-                                                if senha_obs == "Sim":
-                                                    driver.find_element_by_xpath(
-                                                        "/html/body/div[1]/main/article/div/div[2]/div/form/div[9]/div[4]/div/div/button[1]"
-                                                    ).click()
-                                                    driver.find_element_by_xpath(
-                                                        "/html/body/div[1]/main/article/div/div[2]/div/form/div[9]/div[5]/div/div/div/div/input"
-                                                    ).send_keys(senha)
-                                                    driver.find_element_by_xpath(
-                                                        "/html/body/div[1]/main/article/div/div[2]/div/form/div[9]/div[5]/div/div/button"
-                                                    ).click()
-                                                else:
-                                                    driver.find_element_by_xpath(
-                                                        "/html/body/div[1]/main/article/div/div[2]/div/form/div[9]/div[4]/div/div/button[2]"
-                                                    ).click()
-                                                    driver.find_element_by_xpath(
-                                                        "/html/body/div[1]/main/article/div/div[2]/div/form/div[9]/div[5]/div/div/button"
-                                                    ).click()
-                                            case "Biometria":
-                                                driver.find_element_by_xpath(
-                                                    "/html/body/div[1]/main/article/div/div[2]/div/form/div[9]/div[3]/div/div/button[3]"
-                                                ).click()
-                                                driver.find_element_by_xpath(
-                                                    "/html/body/div[1]/main/article/div/div[2]/div/form/div[9]/div[5]/div/div/button"
-                                                ).click()
+                                            # case "Senha":
+                                            #    driver.find_element_by_xpath(
+                                            #        "/html/body/div[1]/main/article/div/div[2]/div/form/div[9]/div[3]/div/div/button[2]"
+                                            #    ).click()
+                                            #    if senha_obs == "Sim":
+                                            #        driver.find_element_by_xpath(
+                                            #            "/html/body/div[1]/main/article/div/div[2]/div/form/div[9]/div[4]/div/div/button[1]"
+                                            #        ).click()
+                                            #        driver.find_element_by_xpath(
+                                            #            "/html/body/div[1]/main/article/div/div[2]/div/form/div[9]/div[5]/div/div/div/div/input"
+                                            #        ).send_keys(senha)
+                                            #        driver.find_element_by_xpath(
+                                            #            "/html/body/div[1]/main/article/div/div[2]/div/form/div[9]/div[5]/div/div/button"
+                                            #        ).click()
+                                            #    else:
+                                            #        driver.find_element_by_xpath(
+                                            #            "/html/body/div[1]/main/article/div/div[2]/div/form/div[9]/div[4]/div/div/button[2]"
+                                            #        ).click()
+                                            #        driver.find_element_by_xpath(
+                                            #            "/html/body/div[1]/main/article/div/div[2]/div/form/div[9]/div[5]/div/div/button"
+                                            #        ).click()
+                                            # case "Biometria":
+                                            #    driver.find_element_by_xpath(
+                                            #        "/html/body/div[1]/main/article/div/div[2]/div/form/div[9]/div[3]/div/div/button[3]"
+                                            #    ).click()
+                                            #    driver.find_element_by_xpath(
+                                            #        "/html/body/div[1]/main/article/div/div[2]/div/form/div[9]/div[5]/div/div/button"
+                                            #    ).click()
                             else:
                                 driver.find_element_by_xpath(
-                                    "/html/body/div[1]/main/article/div/div[2]/div/form/div[9]/div[1]/div/div/button[1]    "
+                                    "/html/body/div[1]/main/article/div/div[2]/div/form/div[9]/div[1]/div/div/div/button[1]"
                                 ).click()
                                 match morador:
                                     case "DESOCUPADO":
                                         driver.find_element_by_xpath(
-                                            "/html/body/div[1]/main/article/div/div[2]/div/form/div[9]/div[2]/div/div/button[3]"
+                                            "/html/body/div[1]/main/article/div/div[2]/div/form/div[9]/div[2]/div/div/div/button[3]"
                                         ).click()
                                         match chave:
-                                            case "Chave Comum":
-                                                time.sleep(2)
+                                            case str("Chave Comum"):
                                                 driver.find_element_by_xpath(
-                                                    "/html/body/div[1]/main/article/div/div[2]/div/form/div[9]/div[3]/div/div/button[1]"
+                                                    "/html/body/div[1]/main/article/div/div[2]/div/form/div[9]/div[3]/div/div/div/button[1]"
                                                 ).click()
                                                 time.sleep(2)
                                                 driver.find_element_by_xpath(
-                                                    "/html/body/div[1]/main/article/div/div[2]/div/form/div[9]/div[4]/div/div/button[1]"
+                                                    "/html/body/div[1]/main/article/div/div[2]/div/form/div[9]/div[4]/div/div/div/div/button"
                                                 ).click()
-                                            case "Senha":
-                                                driver.find_element_by_xpath(
-                                                    "/html/body/div[1]/main/article/div/div[2]/div/form/div[9]/div[3]/div/div/button[2]"
-                                                ).click()
-                                                if senha_obs == "Sim":
-                                                    driver.find_element_by_xpath(
-                                                        "/html/body/div[1]/main/article/div/div[2]/div/form/div[9]/div[4]/div/div/button[1]"
-                                                    ).click()
-                                                    driver.find_element_by_xpath(
-                                                        "/html/body/div[1]/main/article/div/div[2]/div/form/div[9]/div[5]/div/div/div/div/input"
-                                                    ).send_keys(senha)
-                                                    driver.find_element_by_xpath(
-                                                        "/html/body/div[1]/main/article/div/div[2]/div/form/div[9]/div[5]/div/div/button"
-                                                    ).click()
-                                                else:
-                                                    driver.find_element_by_xpath(
-                                                        "/html/body/div[1]/main/article/div/div[2]/div/form/div[9]/div[4]/div/div/button[2]"
-                                                    ).click()
-                                            case "Biometria":
-                                                driver.find_element_by_xpath(
-                                                    "/html/body/div[1]/main/article/div/div[2]/div/form/div[9]/div[3]/div/div/button[3]"
-                                                ).click()
-                                                driver.find_element_by_xpath(
-                                                    "/html/body/div[1]/main/article/div/div[2]/div/form/div[9]/div[5]/div/div/button"
-                                                ).click()
+                                            # case "Senha":
+                                            # driver.find_element_by_xpath(
+                                            #    "/html/body/div[1]/main/article/div/div[2]/div/form/div[9]/div[3]/div/div/button[2]"
+                                            # ).click()
+                                            # if senha_obs == "Sim":
+                                            #    driver.find_element_by_xpath(
+                                            #        "/html/body/div[1]/main/article/div/div[2]/div/form/div[9]/div[4]/div/div/button[1]"
+                                            #    ).click()
+                                            #    driver.find_element_by_xpath(
+                                            #        "/html/body/div[1]/main/article/div/div[2]/div/form/div[9]/div[5]/div/div/div/div/input"
+                                            #    ).send_keys(senha)
+                                            #    driver.find_element_by_xpath(
+                                            #        "/html/body/div[1]/main/article/div/div[2]/div/form/div[9]/div[5]/div/div/button"
+                                            #    ).click()
+                                            # else:
+                                            #    driver.find_element_by_xpath(
+                                            #        "/html/body/div[1]/main/article/div/div[2]/div/form/div[9]/div[4]/div/div/button[2]"
+                                            #    ).click()
+                                            # case "Biometria":
+                                            # driver.find_element_by_xpath(
+                                            #    "/html/body/div[1]/main/article/div/div[2]/div/form/div[9]/div[3]/div/div/button[3]"
+                                            # ).click()
+                                            # driver.find_element_by_xpath(
+                                            #    "/html/body/div[1]/main/article/div/div[2]/div/form/div[9]/div[5]/div/div/button"
+                                            # ).click()
                                     case "PROPRIETÁRIO":
                                         driver.find_element_by_xpath(
-                                            "/html/body/div[1]/main/article/div/div[2]/div/form/div[9]/div[2]/div/div/button[2]"
+                                            "/html/body/div[1]/main/article/div/div[2]/div/form/div[9]/div[2]/div/div/div/button[2]"
                                         ).click()
                                         match chave:
                                             case "Chave Comum":
                                                 driver.find_element_by_xpath(
-                                                    "/html/body/div[1]/main/article/div/div[2]/div/form/div[9]/div[3]/div/div/button[1]"
+                                                    "/html/body/div[1]/main/article/div/div[2]/div/form/div[9]/div[3]/div/div/div/button[1]"
                                                 ).click()
                                                 time.sleep(2)
                                                 driver.find_element_by_xpath(
-                                                    "/html/body/div[1]/main/article/div/div[2]/div/form/div[9]/div[4]/div/div/button"
+                                                    "/html/body/div[1]/main/article/div/div[2]/div/form/div[9]/div[4]/div/div/div/div/button"
                                                 ).click()
-                                            case "Senha":
-                                                driver.find_element_by_xpath(
-                                                    "/html/body/div[1]/main/article/div/div[2]/div/form/div[9]/div[3]/div/div/button[2]"
-                                                ).click()
-                                                if senha_obs == "Sim":
-                                                    driver.find_element_by_xpath(
-                                                        "/html/body/div[1]/main/article/div/div[2]/div/form/div[9]/div[4]/div/div/button[1]"
-                                                    ).click()
-                                                    driver.find_element_by_xpath(
-                                                        "/html/body/div[1]/main/article/div/div[2]/div/form/div[9]/div[5]/div/div/div/div/input"
-                                                    ).send_keys(senha)
-                                                    driver.find_element_by_xpath(
-                                                        "/html/body/div[1]/main/article/div/div[2]/div/form/div[9]/div[5]/div/div/button"
-                                                    ).click()
-                                                else:
-                                                    driver.find_element_by_xpath(
-                                                        "/html/body/div[1]/main/article/div/div[2]/div/form/div[9]/div[4]/div/div/button[2]"
-                                                    ).click()
-                                                    driver.find_element_by_xpath(
-                                                        "/html/body/div[1]/main/article/div/div[2]/div/form/div[9]/div[5]/div/div/button"
-                                                    ).click()
-                                            case "Biometria":
-                                                driver.find_element_by_xpath(
-                                                    "/html/body/div[1]/main/article/div/div[2]/div/form/div[9]/div[3]/div/div/button[3]"
-                                                ).click()
-                                                driver.find_element_by_xpath(
-                                                    "/html/body/div[1]/main/article/div/div[2]/div/form/div[9]/div[5]/div/div/button"
-                                                ).click()
+                                            # case "Senha":
+                                            #    driver.find_element_by_xpath(
+                                            #        "/html/body/div[1]/main/article/div/div[2]/div/form/div[9]/div[3]/div/div/button[2]"
+                                            #    ).click()
+                                            #    if senha_obs == "Sim":
+                                            #        driver.find_element_by_xpath(
+                                            #            "/html/body/div[1]/main/article/div/div[2]/div/form/div[9]/div[4]/div/div/button[1]"
+                                            #        ).click()
+                                            #        driver.find_element_by_xpath(
+                                            #            "/html/body/div[1]/main/article/div/div[2]/div/form/div[9]/div[5]/div/div/div/div/input"
+                                            #        ).send_keys(senha)
+                                            #        driver.find_element_by_xpath(
+                                            #            "/html/body/div[1]/main/article/div/div[2]/div/form/div[9]/div[5]/div/div/button"
+                                            #        ).click()
+                                            #    else:
+                                            #        driver.find_element_by_xpath(
+                                            #            "/html/body/div[1]/main/article/div/div[2]/div/form/div[9]/div[4]/div/div/button[2]"
+                                            #        ).click()
+                                            #        driver.find_element_by_xpath(
+                                            #            "/html/body/div[1]/main/article/div/div[2]/div/form/div[9]/div[5]/div/div/button"
+                                            #        ).click()
+                                            # case "Biometria":
+                                            #    driver.find_element_by_xpath(
+                                            #        "/html/body/div[1]/main/article/div/div[2]/div/form/div[9]/div[3]/div/div/button[3]"
+                                            #    ).click()
+                                            #    driver.find_element_by_xpath(
+                                            #        "/html/body/div[1]/main/article/div/div[2]/div/form/div[9]/div[5]/div/div/button"
+                                            #    ).click()
                                     case "INQUILINO":
                                         driver.find_element_by_xpath(
-                                            "/html/body/div[1]/main/article/div/div[2]/div/form/div[9]/div[2]/div/div/button[1]"
+                                            "/html/body/div[1]/main/article/div/div[2]/div/form/div[9]/div[2]/div/div/div/button[1]"
                                         ).click()
                                         driver.find_element_by_xpath(
-                                            "/html/body/div[1]/main/article/div/div[2]/div/form/div[9]/div[3]/div/div/div/div/input"
+                                            "/html/body/div[1]/main/article/div/div[2]/div/form/div[9]/div[3]/div/div/div/div/div/input"
                                         ).send_keys(data_saida)
                                         match chave:
                                             case "Chave Comum":
                                                 driver.find_element_by_xpath(
-                                                    "/html/body/div[1]/main/article/div/div[2]/div/form/div[9]/div[4]/div/div/button[1]"
+                                                    "/html/body/div[1]/main/article/div/div[2]/div/form/div[9]/div[4]/div/div/div/button[1]"
                                                 ).click()
                                                 time.sleep(2)
                                                 driver.find_element_by_xpath(
-                                                    "/html/body/div[1]/main/article/div/div[2]/div/form/div[9]/div[5]/div/div/button"
+                                                    "/html/body/div[1]/main/article/div/div[2]/div/form/div[9]/div[5]/div/div/div/div/button"
                                                 ).click()
-                                            case "Senha":
-                                                driver.find_element_by_xpath(
-                                                    "/html/body/div[1]/main/article/div/div[2]/div/form/div[9]/div[3]/div/div/button[2]"
-                                                ).click()
-                                                if senha_obs == "Sim":
-                                                    driver.find_element_by_xpath(
-                                                        "/html/body/div[1]/main/article/div/div[2]/div/form/div[9]/div[4]/div/div/button[1]"
-                                                    ).click()
-                                                    driver.find_element_by_xpath(
-                                                        "/html/body/div[1]/main/article/div/div[2]/div/form/div[9]/div[5]/div/div/div/div/input"
-                                                    ).send_keys(senha)
-                                                    driver.find_element_by_xpath(
-                                                        "/html/body/div[1]/main/article/div/div[2]/div/form/div[9]/div[5]/div/div/button"
-                                                    ).click()
-                                                else:
-                                                    driver.find_element_by_xpath(
-                                                        "/html/body/div[1]/main/article/div/div[2]/div/form/div[9]/div[4]/div/div/button[2]"
-                                                    ).click()
-                                                    driver.find_element_by_xpath(
-                                                        "/html/body/div[1]/main/article/div/div[2]/div/form/div[9]/div[5]/div/div/button"
-                                                    ).click()
-                                            case "Biometria":
-                                                driver.find_element_by_xpath(
-                                                    "/html/body/div[1]/main/article/div/div[2]/div/form/div[9]/div[3]/div/div/button[3]"
-                                                ).click()
-                                                driver.find_element_by_xpath(
-                                                    "/html/body/div[1]/main/article/div/div[2]/div/form/div[9]/div[5]/div/div/button"
-                                                ).click()
+                                            # case "Senha":
+                                            #    driver.find_element_by_xpath(
+                                            #        "/html/body/div[1]/main/article/div/div[2]/div/form/div[9]/div[3]/div/div/button[2]"
+                                            #    ).click()
+                                            #    if senha_obs == "Sim":
+                                            #        driver.find_element_by_xpath(
+                                            #            "/html/body/div[1]/main/article/div/div[2]/div/form/div[9]/div[4]/div/div/button[1]"
+                                            #        ).click()
+                                            #        driver.find_element_by_xpath(
+                                            #            "/html/body/div[1]/main/article/div/div[2]/div/form/div[9]/div[5]/div/div/div/div/input"
+                                            #        ).send_keys(senha)
+                                            #        driver.find_element_by_xpath(
+                                            #            "/html/body/div[1]/main/article/div/div[2]/div/form/div[9]/div[5]/div/div/button"
+                                            #        ).click()
+                                            #    else:
+                                            #        driver.find_element_by_xpath(
+                                            #            "/html/body/div[1]/main/article/div/div[2]/div/form/div[9]/div[4]/div/div/button[2]"
+                                            #        ).click()
+                                            #        driver.find_element_by_xpath(
+                                            #            "/html/body/div[1]/main/article/div/div[2]/div/form/div[9]/div[5]/div/div/button"
+                                            #        ).click()
+                                            # case "Biometria":
+                                            #    driver.find_element_by_xpath(
+                                            #        "/html/body/div[1]/main/article/div/div[2]/div/form/div[9]/div[3]/div/div/button[3]"
+                                            #    ).click()
+                                            #    driver.find_element_by_xpath(
+                                            #        "/html/body/div[1]/main/article/div/div[2]/div/form/div[9]/div[5]/div/div/button"
+                                            #    ).click()
+                            time.sleep(5)
                             driver.find_element_by_xpath(
-                                "/html/body/div[1]/main/article/div/div[2]/div/form/div[9]/div[5]/div/div/button[1]"
+                                "//button[@name='hasRestriction']"
                             ).click()
                             driver.find_element_by_xpath(
                                 "//textarea[@name='additionalInfo']"
                             ).send_keys(chave_obs)
                             driver.find_element_by_xpath(
-                                "/html/body/div[1]/main/article/div/div[2]/div/form/div[10]/div/div/div/textarea[1]"
+                                "/html/body/div[1]/main/article/div/div[2]/div/form/div[10]/div/div/div/div/textarea[1]"
                             ).send_keys("3P\n" + obs_interna)
                             driver.find_element_by_xpath(
                                 "/html/body/div[1]/main/footer/div/div[1]/button"
@@ -792,16 +786,15 @@ class Cadastro:
                                 ec.visibility_of_element_located(
                                     (
                                         By.XPATH,
-                                        "/html/body/div[1]/main/article/div/form/div[1]/label[2]/span[1]",
+                                        "/html/body/div[1]/main/article/div/form/div/div/label[2]/span[1]",
                                     )
                                 )
                             )
                             driver.find_element_by_xpath(
-                                "/html/body/div[1]/main/article/div/form/div[1]/label[2]/span[1]"
+                                "/html/body/div[1]/main/article/div/form/div/div/label[2]/span[1]"
                             ).click()
-                            time.sleep(2)
-                            driver.find_element_by_xpath(
-                                "/html/body/div[1]/main/article/div/form/div[2]/div/div/div"
+                            driver.find_element_by_id(
+                                "mui-component-select-reasonSelectRentName"
                             ).click()
                             driver.find_element_by_xpath(
                                 "/html/body/div[3]/div[3]/ul/li[2]"
@@ -827,52 +820,51 @@ class Cadastro:
                             continue
                         try:
                             print("start venda")
-                            # driver.execute_script("document.getElementsByClassName('fXELdk')[0].scroll(0,0)")
                             WebDriverWait(driver, 60).until(
                                 ec.visibility_of_element_located(
                                     (
                                         By.XPATH,
-                                        "/html/body/div[1]/main/article/div/form/div/label[1]/span[1]",
+                                        "/html/body/div[1]/main/article/div/form/div/div/label[1]/span[1]",
                                     )
                                 )
                             )
                             driver.find_element_by_xpath(
-                                "/html/body/div[1]/main/article/div/form/div/label[1]/span[1]"
+                                "/html/body/div[1]/main/article/div/form/div/div/label[1]/span[1]"
                             ).click()
-                            time.sleep(2)
                             driver.find_element_by_xpath(
-                                '//*[@id="sale"]/div[3]/div[1]/div/div/div/div/div/div[2]/input'
+                                "//input[@name='saleValue']"
                             ).send_keys(str(valor))
                             if condominio != 0:
                                 driver.find_element_by_xpath(
-                                    '//*[@id="sale"]/div[3]/div[2]/div/div/div/div/div/div[2]/input'
+                                    "//input[@name='condominiumFee']"
                                 ).send_keys(str(condominio))
                             match iptu_pagamento:
                                 case "Anualmente":
                                     driver.find_element_by_xpath(
-                                        "/html/body/div[1]/main/article/div/form/div[4]/div[2]/button[2]"
+                                        "/html/body/div[1]/main/article/div/form/div[4]/div[2]/div/button[2]"
                                     ).click()
                                     if iptu != 0:
                                         driver.find_element_by_xpath(
-                                            "/html/body/div[1]/main/article/div/form/div[5]/div/div/div[2]/div/div[2]/input"
+                                            "/html/body/div[1]/main/article/div/form/div[5]/div/div/div[2]/div/div/div[2]/input"
                                         ).send_keys(str(iptu))
                                 case "Não pago":
                                     driver.find_element_by_xpath(
-                                        "/html/body/div[1]/main/article/div/form/div[4]/div[2]/button[1]"
+                                        "/html/body/div[1]/main/article/div/form/div[4]/div[2]/div/button[1]"
                                     ).click()
                                 case "Mensalmente":
                                     driver.find_element_by_xpath(
-                                        "/html/body/div[1]/main/article/div/form/div[4]/div[2]/button[3]"
+                                        "/html/body/div[1]/main/article/div/form/div[4]/div[2]/div/button[3]"
                                     ).click()
                                     driver.find_element_by_xpath(
-                                        "/html/body/div[1]/main/article/div/form/div[5]/div[1]/div/div/div"
+                                        "/html/body/div[1]/main/article/div/form/div[5]/div[1]/div/div"
                                     ).click()
+                                    time.sleep(1)
                                     driver.find_element_by_xpath(
-                                        "/html/body/div[3]/div[3]/ul/li[12]"
+                                        "/html/body/div[3]/div[3]/ul/li[13]"
                                     ).click()
                                     if iptu != 0:
                                         driver.find_element_by_xpath(
-                                            "/html/body/div[1]/main/article/div/form/div[5]/div[2]/div/div[2]/div/div[2]/input"
+                                            "/html/body/div[1]/main/article/div/form/div[5]/div[2]/div/div[2]/div/div/div[2]/input"
                                         ).send_keys(str(iptu))
                             try:
                                 WebDriverWait(driver, 10).until(
@@ -883,14 +875,9 @@ class Cadastro:
                                         )
                                     )
                                 )
-                                # driver.get(
-                                #     "https://owner-conversion.quintoandar.com.br/register/new/owner"
-                                # )
-                                # continue
                                 driver.find_element_by_xpath(
                                     "/html/body/div[1]/main/footer/div/div/button"
                                 ).click()
-
                                 print("finish imovel " + str(id_imovel_imob))
                             except TimeoutException:
                                 dados[43][index] = "Erro de dados"
@@ -946,6 +933,7 @@ class Cadastro:
                                 sep=",",
                                 index=False,
                             )
+                            time.sleep(20)
                             driver.get("https://crm.quintoandar.com.br/tarefas/")
                             try:
                                 WebDriverWait(driver, 60).until(
