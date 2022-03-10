@@ -308,7 +308,6 @@ class Foto:
                             index=False,
                         )
                         driver.close()
-                        driver.switch_to.window(driver.window_handles[0])
                         driver.get("https://user.quintoandar.com.br/admin/menu")
                     except TimeoutException:
                         driver.get("https://user.quintoandar.com.br/admin/menu")
