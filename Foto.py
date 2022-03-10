@@ -322,7 +322,7 @@ class Foto:
                         #         '//div[@class="errosAdmin"]',
                         #     )
                         # )
-                        salvar_sucesso(dados,index)
+                        salvar_sucesso(dados,number, index)
                     except TimeoutException:
                         salvar_erro(dados,number,index,"pag_fotos", "pag_fotos")
                 except TimeoutException:
