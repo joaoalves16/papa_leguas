@@ -40,7 +40,12 @@ class Foto:
                     + id_imovel
                     + ")"
                 )
-                driver.get("https://user.quintoandar.com.br/fotografo/uploadFoto/" + id_imovel)
+
+                # tenta entrar 2x na pag, se n conseguir o script para
+                try:
+                    driver.get("https://user.quintoandar.com.br/fotografo/uploadFoto/" + id_imovel)
+                except:
+                    driver.get("https://user.quintoandar.com.br/fotografo/uploadFoto/" + id_imovel)
 
                 #iniciar download fotos
                 print("start download_photos")
