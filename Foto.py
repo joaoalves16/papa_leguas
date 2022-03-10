@@ -22,6 +22,25 @@ def auto_down(url,filename):
         print('Network conditions is not good.Reloading.')
         auto_down(url,filename)
 
+def salvar_erro(dados,number,index,nome,desc):
+    print("error "+desc)
+    dados[45][index] = "erro-"+nome
+    dados.to_csv(
+        "./arquivos/dados" + number + ".csv",
+        header=None,
+        sep=",",
+        index=False,
+    )
+
+def salvar_sucesso(dados,number,index):
+    dados[45][index] = "ok-img (" + datetime.today().strftime("%Y-%m-%d %H:%M:%S") + ")"
+    dados.to_csv(
+        "./arquivos/dados" + number + ".csv",
+        header=None,
+        sep=",",
+        index=False,
+    )
+
 class Foto:
     def cadastrarFotos(dados, fotos, driver):
         number = sys.argv[1]
@@ -30,6 +49,11 @@ class Foto:
             if pd.isna(dados[45][index]) and str(dados[42][index]) != "1" and str(dados[42][index]) != "E":
                 id_imovel_imob = dados[1][index]
                 id_imovel = dados[42][index]
+
+                if pd.isna(id_imovel):
+                    salvar_erro(dados,number,index,"id_imovel_nan", "id_imovel invalido")
+                    continue
+
                 check_file = "./imag/" + id_imovel
 
                 # entrar no link
@@ -133,27 +157,13 @@ class Foto:
 
                         # verifica se a pasta realmente tem imagens
                         if len(os.listdir(caminho_atual)) == 0:
-                            print("error sem_fotos_encontradas")
-                            dados[45][index] = "erro-sem_imgs"
-                            dados.to_csv(
-                                "./arquivos/dados" + number + ".csv",
-                                header=None,
-                                sep=",",
-                                index=False,
-                            )
+                            salvar_erro(dados,number,index,"sem_imgs", "sem_fotos_encontradas")
                             continue
 
                         # verifica se o imovel já tem imagens cadastradas
                         img_elements = driver.find_elements_by_xpath("//div[@class='foto-container']")
                         if len(img_elements) > 0:
-                            print("error ja_tem_fotos")
-                            dados[45][index] = "erro-ja_tem_imgs"
-                            dados.to_csv(
-                                "./arquivos/dados" + number + ".csv",
-                                header=None,
-                                sep=",",
-                                index=False,
-                            )
+                            salvar_erro(dados,number,index,"ja_tem_imgs", "ja_tem_fotos")
                             continue
 
                         # enviando primeira foto (capa)
@@ -312,27 +322,8 @@ class Foto:
                         #         '//div[@class="errosAdmin"]',
                         #     )
                         # )
-
-                        dados[45][index] = "ok-img ("+datetime.today().strftime("%Y-%m-%d %H:%M:%S")+")"
-                        dados.to_csv(
-                            "./arquivos/dados" + number + ".csv",
-                            header=None,
-                            sep=",",
-                            index=False,
-                        )
+                        salvar_sucesso(dados,index)
                     except TimeoutException:
-                        dados[45][index] = "erro-pag_fotos"
-                        dados.to_csv(
-                            "./arquivos/dados" + number + ".csv",
-                            header=None,
-                            sep=",",
-                            index=False,
-                        )
+                        salvar_erro(dados,number,index,"pag_fotos", "pag_fotos")
                 except TimeoutException:
-                    dados[45][index] = "erro-pesq_id"
-                    dados.to_csv(
-                        "./arquivos/dados" + number + ".csv",
-                        header=None,
-                        sep=",",
-                        index=False,
-                    )
+                    salvar_erro(dados,number,index,"pesq_id", "pesq_id")
