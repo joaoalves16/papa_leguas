@@ -2,9 +2,11 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.support import expected_conditions as ec
 from selenium.webdriver.common.by import By
+from datetime import datetime
 import time
 import urllib.request
 import os
+import pandas as pd
 import pyautogui
 import sys
 
@@ -13,21 +15,37 @@ pyautogui.FAILSAFE = False
 
 class Foto:
     def cadastrarFotos(dados, fotos, driver):
+        number = sys.argv[1]
         links = []
         for index, row in dados.iterrows():
             cont = 1
-            if str(dados[45][index]) != "ok" and str(dados[42][index]) != "1":
+            if pd.isna(dados[45][index]) and str(dados[42][index]) != "1" and str(dados[42][index]) != "E":
                 id_imovel_imob = dados[1][index]
                 id_imovel = dados[42][index]
                 check_file = "./imag/" + id_imovel
+                print("start imovel " + id_imovel)
                 if os.path.isdir(check_file) != True:
-                    links = fotos.loc[fotos[0] == id_imovel_imob][1]
-                    pasta = "./imag/" + id_imovel + "/"
-                    os.mkdir(pasta)
-                    for link in links:
-                        save_name = pasta + "/" + str(cont) + ".jpg"
-                        urllib.request.urlretrieve(link, save_name)
-                        cont += 1
+                    print("start download_photos")
+                    founded = fotos.loc[fotos[0] == id_imovel_imob]
+                    if len(founded) > 0:
+                        links = founded[1]
+                        pasta = "./imag/" + id_imovel + "/"
+                        os.mkdir(pasta)
+                        for link in links:
+                            print("start photo"+str(cont))
+                            save_name = pasta + "/" + str(cont) + ".jpg"
+                            urllib.request.urlretrieve(link, save_name)
+                            cont += 1
+                    else:
+                        print("error sem_fotos_encontradas")
+                        dados[45][index] = "erro-sem_imgs"
+                        dados.to_csv(
+                            "./arquivos/dados" + number + ".csv",
+                            header=None,
+                            sep=",",
+                            index=False,
+                        )
+                        continue
                 try:
                     WebDriverWait(driver, 200).until(
                         ec.visibility_of_element_located(
@@ -69,16 +87,18 @@ class Foto:
                             + "/imag/"
                             + id_imovel
                         )
-                        for fotos in os.listdir(caminho_atual):
-                            print(caminho_atual + "/" + fotos)
+                        # time.sleep(10000)
+                        for imagens in os.listdir(caminho_atual):
+                            print(caminho_atual + "/" + imagens)
                             driver.find_element_by_id("input-fotos").send_keys(
-                                caminho_atual + "/" + fotos
+                                caminho_atual + "/" + imagens
                             )
                             WebDriverWait(driver, 10).until(
                                 ec.invisibility_of_element_located(
                                     (By.XPATH, "/html/body/div[15]")
                                 )
                             )
+                        # time.sleep(10000)
                         print("aguardando botao salvar")
                         WebDriverWait(driver, 200).until(
                             ec.visibility_of_element_located(
@@ -95,12 +115,12 @@ class Foto:
                             + id_imovel
                             + ")"
                         )
-                        # driver.find_element_by_xpath(
-                        #     '//*[@id="salvar_publicar"]',
-                        # ).click()
-                        dados[45][index] = "ok"
+                        driver.find_element_by_xpath(
+                            '//*[@id="salvar_publicar"]',
+                        ).click()
+                        dados[45][index] = "ok-img ("+datetime.today().strftime("%Y-%m-%d %H:%M:%S")+")"
                         dados.to_csv(
-                            "./arquivos/dados_test.csv",
+                            "./arquivos/dados" + number + ".csv",
                             header=None,
                             sep=",",
                             index=False,
@@ -110,5 +130,19 @@ class Foto:
                         driver.get("https://user.quintoandar.com.br/admin/menu")
                     except TimeoutException:
                         driver.get("https://user.quintoandar.com.br/admin/menu")
+                        dados[45][index] = "erro-pag_fotos"
+                        dados.to_csv(
+                            "./arquivos/dados" + number + ".csv",
+                            header=None,
+                            sep=",",
+                            index=False,
+                        )
                 except TimeoutException:
                     driver.get("https://user.quintoandar.com.br/admin/menu")
+                    dados[45][index] = "erro-pesq_id"
+                    dados.to_csv(
+                        "./arquivos/dados" + number + ".csv",
+                        header=None,
+                        sep=",",
+                        index=False,
+                    )
