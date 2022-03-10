@@ -307,10 +307,7 @@ class Foto:
                             sep=",",
                             index=False,
                         )
-                        driver.close()
-                        driver.get("https://user.quintoandar.com.br/admin/menu")
                     except TimeoutException:
-                        driver.get("https://user.quintoandar.com.br/admin/menu")
                         dados[45][index] = "erro-pag_fotos"
                         dados.to_csv(
                             "./arquivos/dados" + number + ".csv",
@@ -319,7 +316,6 @@ class Foto:
                             index=False,
                         )
                 except TimeoutException:
-                    driver.get("https://user.quintoandar.com.br/admin/menu")
                     dados[45][index] = "erro-pesq_id"
                     dados.to_csv(
                         "./arquivos/dados" + number + ".csv",
