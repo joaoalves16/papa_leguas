@@ -66,9 +66,7 @@ def run_foto(dados, driver):
         print(":: start FOTO ::")
         Foto.cadastrarFotos(dados, fotos, driver)
     except Exception as e:
-        print('DEU ERRO:')
-        print(e)
-        # logging.error(traceback.format_exc())
+        logging.error(traceback.format_exc())
         driver.save_screenshot(
             "./erros/foto-" + datetime.today().strftime("%Y-%m-%d %H:%M" + ".png")
         )
