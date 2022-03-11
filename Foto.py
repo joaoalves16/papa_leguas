@@ -50,7 +50,7 @@ class Foto:
                 id_imovel_imob = dados[1][index]
                 id_imovel = dados[42][index]
 
-                if pd.isna(id_imovel):
+                if pd.isna(id_imovel) or id_imovel == "0":
                     salvar_erro(dados,number,index,"id_imovel_nan", "id_imovel invalido")
                     continue
 
@@ -113,224 +113,218 @@ class Foto:
                 #     )
                 #     continue
                 try:
+                    driver.execute_script("window.scrollTo(0, document.body.scrollHeight)")
+                    time.sleep(1)
+                    # print('wait')
+                    WebDriverWait(driver, 200).until(
+                        ec.visibility_of_element_located(
+                            (
+                                By.XPATH,
+                                "//div[@class='content-pad blkEnviar']",
+                            )
+                        )
+                    )
+                    time.sleep(1)
+                    driver.execute_script("window.scrollTo(0, document.body.scrollHeight)")
+
+                    caminho_atual = (
+                        os.path.dirname(os.path.realpath(__file__))
+                        + "/imag/"
+                        + id_imovel
+                    )
+
+                    # verifica se a pasta realmente tem imagens
+                    if len(os.listdir(caminho_atual)) == 0:
+                        salvar_erro(dados,number,index,"sem_imgs", "sem_fotos_encontradas")
+                        continue
+
+                    # verifica se o imovel já tem imagens cadastradas
+                    img_elements = driver.find_elements_by_xpath("//div[@class='foto-container']")
+                    if len(img_elements) > 0:
+                        # scroll para o final da tela e aguarda
+                        try:
+                            driver.execute_script("window.scrollTo(0, document.body.scrollHeight)")
+                            driver.find_element(By.ID, 'excluirTodasFotos').click()
+                            WebDriverWait(driver, 10).until(
+                                ec.visibility_of_element_located(
+                                    (By.XPATH, '//button[@class="swal-button swal-button--confirm"]')
+                                )
+                            )
+                            driver.find_element(By.XPATH, '//button[@class="swal-button swal-button--confirm"]').click()
+                            time.sleep(1)
+                            WebDriverWait(driver, 10).until(
+                                ec.visibility_of_element_located(
+                                    (By.XPATH, '//button[@class="swal-button swal-button--confirm"]')
+                                )
+                            )
+                            driver.find_element(By.XPATH, '//button[@class="swal-button swal-button--confirm"]').click()
+                        except:
+                            salvar_erro(dados,number,index,"ja_tem_imgs", "ja_tem_fotos")
+                            continue
+
+                    # enviando primeira foto (capa)
+                    driver.find_element_by_id("input-fotos").send_keys(
+                        caminho_atual + "/1.jpg"
+                    )
+
+                    # time.sleep(300)
+                    # aguarda loading ficar invisível
+                    WebDriverWait(driver, 30).until(
+                        ec.invisibility_of_element_located(
+                            (By.XPATH, "/html/body/div[15]")
+                        )
+                    )
+
+                    # scroll para o final da tela e aguarda
+                    driver.execute_script("window.scrollTo(0, document.body.scrollHeight)")
+                    time.sleep(3)
+
+                    error_img = driver.find_elements_by_xpath("//div[@class='mensagem-erro-campo imagem tamanhoInvalido']")
+                    if len(error_img) > 0:
+                        salvar_erro(dados, number, index, 'img_pequena', 'img_pequena')
+                        continue
+
+                    # espera a miniatura da imagem aparecer e aguarda
+                    WebDriverWait(driver, 10).until(
+                        ec.visibility_of_element_located(
+                            (By.XPATH, "//div[@class='img-view-container ']")
+                        )
+                    )
+                    time.sleep(1)
+
+                    # hover na miniatura para aparecer opcoes
+                    hoverboy = driver.find_element(By.XPATH,
+                        "//div[@class='img-view-container ']"
+                    )
+                    hov = ActionChains(driver).move_to_element(hoverboy)
+                    hov.perform()
+                    time.sleep(2)
+
+                    # clica no link para definir capa para abrir aba
+                    WebDriverWait(driver, 10).until(
+                        ec.visibility_of_element_located(
+                            (By.XPATH, '//a[@data-original-title="Definir como capa"]')
+                        )
+                    )
+                    driver.find_element(By.XPATH, '//a[@data-original-title="Definir como capa"]').click()
+
+                    # clica no button dentro da aba para salvar capa
+                    WebDriverWait(driver, 10).until(
+                        ec.visibility_of_element_located(
+                            (By.XPATH, "//button[contains(text(), 'Salvar Capa')]")
+                        )
+                    )
+                    time.sleep(4)
+                    driver.find_element(By.XPATH, "//button[contains(text(), 'Salvar Capa')]").click()
+
+                    #
+                    # time.sleep(10000)
+                    imagens_restantes = os.listdir(caminho_atual)[0:-1]
+                    print(imagens_restantes)
+                    for imagens in imagens_restantes:
+                        print(caminho_atual + "/" + imagens)
+                        driver.find_element_by_id("input-fotos").send_keys(
+                            caminho_atual + "/" + imagens
+                        )
+                        WebDriverWait(driver, 60).until(
+                            ec.invisibility_of_element_located(
+                                (By.XPATH, "/html/body/div[15]")
+                            )
+                        )
+                    WebDriverWait(driver, 60).until(
+                        ec.invisibility_of_element_located(
+                            (By.XPATH, "/html/body/div[15]")
+                        )
+                    )
+
+                    # driver.find_element(By.XPATH, '/html/body/div[9]/div/div/form/div[2]/div[5]/div/div[2]/div[1]/div[1]/label').click()
+
+                    # NOVA PAG PUBLICAR
+
+                    # tenta entrar 2x na pag publicacao, se n conseguir o script para
+                    try:
+                        driver.get("https://user.quintoandar.com.br/imovel/editar/"+id_imovel+"/fotos")
+                    except:
+                        driver.get("https://user.quintoandar.com.br/imovel/editar/"+id_imovel+"/fotos")
+
+                    WebDriverWait(driver, 60).until(
+                        ec.visibility_of_element_located(
+                            (By.ID, "btnPublicar")
+                        )
+                    )
+                    driver.find_element_by_id(
+                        'btnPublicar',
+                    ).click()
+
+
+                    WebDriverWait(driver, 60).until(
+                        ec.visibility_of_element_located(
+                            (By.ID, "popUpCallBackPublicar")
+                        )
+                    )
+
+                    # FIM NOVA PAG PUBLICAR
+
+
+                    # time.sleep(10000)
+                    # print("aguardando botao salvar")
+                    # time.sleep(2)
+                    # driver.execute_script("window.scrollTo(0, document.body.scrollHeight)")
+                    # time.sleep(2)
                     # WebDriverWait(driver, 200).until(
                     #     ec.visibility_of_element_located(
                     #         (
                     #             By.XPATH,
-                    #             "/html/body/div[10]/div/div[2]/div[2]/form/div[2]/ul/li[1]/input",
+                    #             '//*[@id="salvar_publicar"]',
                     #         )
                     #     )
                     # )
+
+                    # time.sleep(2)
+                    # driver.execute_script("window.scrollTo(0, document.body.scrollHeight)")
+                    # time.sleep(2)
+
                     # driver.find_element(By.XPATH,
-                    #     "/html/body/div[10]/div/div[2]/div[2]/form/div[2]/ul/li[1]/input"
-                    # ).send_keys(id_imovel)
-                    # driver.find_element(By.XPATH,
-                    #     "/html/body/div[10]/div/div[2]/div[2]/form/div[1]/input"
+                    #     '//*[@id="salvar_publicar"]',
                     # ).click()
-                    try:
-                        # WebDriverWait(driver, 200).until(
-                        #     ec.visibility_of_element_located(
-                        #         (
-                        #             By.XPATH,
-                        #             "/html/body/div[10]/div/div[11]/ul/li/div[2]/div/div[1]/div/div[1]/a[2]/span/i",
-                        #         )
-                        #     )
-                        # )
-                        # driver.find_element(By.XPATH,
-                        #     "/html/body/div[10]/div/div[11]/ul/li/div[2]/div/div[1]/div/div[1]/a[2]/span/i"
-                        # ).click()
-                        # driver.switch_to.window(driver.window_handles[1])
 
-                        driver.execute_script("window.scrollTo(0, document.body.scrollHeight)")
-                        time.sleep(1)
-                        WebDriverWait(driver, 200).until(
-                            ec.visibility_of_element_located(
-                                (
-                                    By.XPATH,
-                                    "//div[@class='content-pad blkEnviar']",
-                                )
-                            )
-                        )
-                        time.sleep(1)
-                        driver.execute_script("window.scrollTo(0, document.body.scrollHeight)")
-
-                        caminho_atual = (
-                            os.path.dirname(os.path.realpath(__file__))
-                            + "/imag/"
-                            + id_imovel
-                        )
-
-                        # verifica se a pasta realmente tem imagens
-                        if len(os.listdir(caminho_atual)) == 0:
-                            salvar_erro(dados,number,index,"sem_imgs", "sem_fotos_encontradas")
-                            continue
-
-                        # verifica se o imovel já tem imagens cadastradas
-                        img_elements = driver.find_elements_by_xpath("//div[@class='foto-container']")
-                        if len(img_elements) > 0:
-                            salvar_erro(dados,number,index,"ja_tem_imgs", "ja_tem_fotos")
-                            continue
-
-                        # enviando primeira foto (capa)
-                        driver.find_element_by_id("input-fotos").send_keys(
-                            caminho_atual + "/1.jpg"
-                        )
-
-                        # time.sleep(300)
-                        # aguarda loading ficar invisível
-                        WebDriverWait(driver, 30).until(
-                            ec.invisibility_of_element_located(
-                                (By.XPATH, "/html/body/div[15]")
-                            )
-                        )
-
-                        # scroll para o final da tela e aguarda
-                        driver.execute_script("window.scrollTo(0, document.body.scrollHeight)")
-                        time.sleep(3)
-
-                        # espera a miniatura da imagem aparecer e aguarda
-                        WebDriverWait(driver, 10).until(
-                            ec.visibility_of_element_located(
-                                (By.XPATH, "//div[@class='img-view-container ']")
-                            )
-                        )
-                        time.sleep(1)
-
-                        # hover na miniatura para aparecer opcoes
-                        hoverboy = driver.find_element(By.XPATH,
-                            "//div[@class='img-view-container ']"
-                        )
-                        hov = ActionChains(driver).move_to_element(hoverboy)
-                        hov.perform()
-                        time.sleep(2)
-
-                        # clica no link para definir capa para abrir aba
-                        WebDriverWait(driver, 10).until(
-                            ec.visibility_of_element_located(
-                                (By.XPATH, '//a[@data-original-title="Definir como capa"]')
-                            )
-                        )
-                        driver.find_element(By.XPATH, '//a[@data-original-title="Definir como capa"]').click()
-
-                        # clica no button dentro da aba para salvar capa
-                        WebDriverWait(driver, 10).until(
-                            ec.visibility_of_element_located(
-                                (By.XPATH, "//button[contains(text(), 'Salvar Capa')]")
-                            )
-                        )
-                        time.sleep(4)
-                        driver.find_element(By.XPATH, "//button[contains(text(), 'Salvar Capa')]").click()
-
-                        #
-                        # time.sleep(10000)
-                        imagens_restantes = os.listdir(caminho_atual)[0:-1]
-                        print(imagens_restantes)
-                        for imagens in imagens_restantes:
-                            print(caminho_atual + "/" + imagens)
-                            driver.find_element_by_id("input-fotos").send_keys(
-                                caminho_atual + "/" + imagens
-                            )
-                            WebDriverWait(driver, 60).until(
-                                ec.invisibility_of_element_located(
-                                    (By.XPATH, "/html/body/div[15]")
-                                )
-                            )
-                        WebDriverWait(driver, 60).until(
-                            ec.invisibility_of_element_located(
-                                (By.XPATH, "/html/body/div[15]")
-                            )
-                        )
-
-                        # driver.find_element(By.XPATH, '/html/body/div[9]/div/div/form/div[2]/div[5]/div/div[2]/div[1]/div[1]/label').click()
-
-                        # NOVA PAG PUBLICAR
-
-                        # tenta entrar 2x na pag publicacao, se n conseguir o script para
-                        try:
-                            driver.get("https://user.quintoandar.com.br/imovel/editar/"+id_imovel+"/fotos")
-                        except:
-                            driver.get("https://user.quintoandar.com.br/imovel/editar/"+id_imovel+"/fotos")
-
-                        WebDriverWait(driver, 60).until(
-                            ec.visibility_of_element_located(
-                                (By.ID, "btnPublicar")
-                            )
-                        )
-                        driver.find_element_by_id(
-                            'btnPublicar',
-                        ).click()
+                    print(
+                        "finish imagem imob ("
+                        + id_imovel_imob
+                        + ") 5A ("
+                        + id_imovel
+                        + ")"
+                    )
 
 
-                        WebDriverWait(driver, 60).until(
-                            ec.visibility_of_element_located(
-                                (By.ID, "popUpCallBackPublicar")
-                            )
-                        )
+                    # try:
+                    #     WebDriverWait(driver, 10).until(
+                    #         ec.visibility_of_element_located(
+                    #             (
+                    #                 By.XPATH,
+                    #                 '//div[@class="errosAdmin"]',
+                    #             )
+                    #         )
+                    #     )
+                    #     dados[45][index] = "error-" + driver.find_element_by_class("errosAdmin").text
+                    #     dados.to_csv(
+                    #         "./arquivos/dados" + number + ".csv",
+                    #         header=None,
+                    #         sep=",",
+                    #         index=False,
+                    #     )
+                    # except TimeoutException:
 
-                        # FIM NOVA PAG PUBLICAR
-
-
-                        # time.sleep(10000)
-                        # print("aguardando botao salvar")
-                        # time.sleep(2)
-                        # driver.execute_script("window.scrollTo(0, document.body.scrollHeight)")
-                        # time.sleep(2)
-                        # WebDriverWait(driver, 200).until(
-                        #     ec.visibility_of_element_located(
-                        #         (
-                        #             By.XPATH,
-                        #             '//*[@id="salvar_publicar"]',
-                        #         )
-                        #     )
-                        # )
-
-                        # time.sleep(2)
-                        # driver.execute_script("window.scrollTo(0, document.body.scrollHeight)")
-                        # time.sleep(2)
-
-                        # driver.find_element(By.XPATH,
-                        #     '//*[@id="salvar_publicar"]',
-                        # ).click()
-
-                        print(
-                            "finish imagem imob ("
-                            + id_imovel_imob
-                            + ") 5A ("
-                            + id_imovel
-                            + ")"
-                        )
-
-
-                        # try:
-                        #     WebDriverWait(driver, 10).until(
-                        #         ec.visibility_of_element_located(
-                        #             (
-                        #                 By.XPATH,
-                        #                 '//div[@class="errosAdmin"]',
-                        #             )
-                        #         )
-                        #     )
-                        #     dados[45][index] = "error-" + driver.find_element_by_class("errosAdmin").text
-                        #     dados.to_csv(
-                        #         "./arquivos/dados" + number + ".csv",
-                        #         header=None,
-                        #         sep=",",
-                        #         index=False,
-                        #     )
-                        # except TimeoutException:
-
-                        # driver.find_elements_by_class_name("foto-container")
-                        #
-                        # ec.visibility_of_element_located(
-                        #     (
-                        #         By.XPATH,
-                        #         '//div[@class="errosAdmin"]',
-                        #     )
-                        # )
-                        salvar_sucesso(dados,number, index)
-                    except TimeoutException:
-                        salvar_erro(dados,number,index,"pag_fotos", "pag_fotos")
+                    # driver.find_elements_by_class_name("foto-container")
+                    #
+                    # ec.visibility_of_element_located(
+                    #     (
+                    #         By.XPATH,
+                    #         '//div[@class="errosAdmin"]',
+                    #     )
+                    # )
+                    salvar_sucesso(dados,number, index)
                 except TimeoutException:
-                    salvar_erro(dados,number,index,"pesq_id", "pesq_id")
+                    salvar_erro(dados,number,index,"pag_fotos", "pag_fotos")
         print('-- Finalizado --')
         print('-- Happy Ending :) --')
