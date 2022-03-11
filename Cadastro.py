@@ -169,7 +169,7 @@ class Cadastro:
                             driver.find_element_by_xpath(
                                 "/html/body/div[1]/main/footer/div/div[1]/button"
                             ).click()
-                        if tipo == "Casa" or tipo == "Casaemcondominio":
+                        if tipo == "Casa" or tipo == "Casaemcondomínio":
                             try:
                                 WebDriverWait(driver, 60).until(
                                     ec.visibility_of_element_located(

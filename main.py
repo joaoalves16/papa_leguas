@@ -56,7 +56,7 @@ WebDriverWait(driver, 200).until(
     ec.visibility_of_element_located(
         (
             By.XPATH,
-            "//html/body/div[1]/main/article/div/div[3]/div/form/div[1]/div/div/div/div/input",
+            "/html/body/div[1]/main/article/div/div[3]/div/form/div[1]/div/div/div/div/div/input",
         )
     )
 )
