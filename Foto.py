@@ -51,7 +51,7 @@ class Foto:
                 id_imovel = dados[42][index]
 
                 if pd.isna(id_imovel) or id_imovel == "0":
-                    salvar_erro(dados,number,index,"id_imovel_nan", "id_imovel invalido")
+                    # salvar_erro(dados,number,index,"id_imovel_nan", "id_imovel invalido")
                     continue
 
                 check_file = "./imag/" + id_imovel
@@ -71,6 +71,7 @@ class Foto:
                     driver.get("https://user.quintoandar.com.br/fotografo/uploadFoto/" + id_imovel)
                 except:
                     try:
+                        time.sleep(3)
                         print('retry url "fotografo/uploadFoto"')
                         driver.get("https://user.quintoandar.com.br/fotografo/uploadFoto/" + id_imovel)
                     except:
@@ -226,14 +227,14 @@ class Foto:
                         driver.find_element_by_id("input-fotos").send_keys(
                             caminho_atual + "/" + imagens
                         )
-                        WebDriverWait(driver, 60).until(
+                        WebDriverWait(driver, 120).until(
                             ec.invisibility_of_element_located(
-                                (By.XPATH, "/html/body/div[15]")
+                                (By.ID, "uploadProgressBar")
                             )
                         )
                     WebDriverWait(driver, 60).until(
                         ec.invisibility_of_element_located(
-                            (By.XPATH, "/html/body/div[15]")
+                            (By.XPATH, "uploadProgressBar")
                         )
                     )
 

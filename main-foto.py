@@ -39,39 +39,55 @@ def start_driver():
 
     # AUTENTICACAO
     print(":: start AUTENTICACAO ::")
-    try:
-        WebDriverWait(driver, 60).until(
-            ec.visibility_of_element_located(
-                (
-                    By.XPATH,
-                    "/html/body/div/div[2]/div/div/div[1]/div[2]/ul/li/a",
-                )
-            )
-        )
-    except TimeoutException:
-        driver.get("https://owner-conversion.quintoandar.com.br/register/new/owner")
-    print("click login_sso")
-    driver.find_element(By.XPATH,
-        "/html/body/div/div[2]/div/div/div[1]/div[2]/ul/li/a"
-    ).click()
-    print("wait login_sso")
+    # try:
+    #     WebDriverWait(driver, 60).until(
+    #         ec.visibility_of_element_located(
+    #             (
+    #                 By.XPATH,
+    #                 "/html/body/div/div[2]/div/div/div[1]/div[2]/ul/li/a",
+    #             )
+    #         )
+    #     )
+    # except TimeoutException:
+    #     driver.get("https://owner-conversion.quintoandar.com.br/register/new/owner")
 
-    # espera botão login google
+
+    # espera primeiro botao login
+    print("wait login_sso")
     WebDriverWait(driver, 60).until(
         ec.visibility_of_element_located(
             (
-                By.XPATH,
-                '//div[@class="loginBtn loginGoogle"]',
+                By.ID,
+                "zocial-google",
             )
         )
     )
 
-    # clicar botão login google pra abrir no CRM
-    driver.find_element(By.XPATH,
-        '//div[@class="loginBtn loginGoogle"]'
+    # clica primeiro botao login
+    print("click login_sso")
+    driver.find_element(By.ID,
+        "zocial-google"
     ).click()
 
+    # espera botão login google
+    # print("wait google_button")
+    # WebDriverWait(driver, 60).until(
+    #     ec.visibility_of_element_located(
+    #         (
+    #             By.XPATH,
+    #             '//div[@class="loginBtn loginGoogle"]',
+    #         )
+    #     )
+    # )
+    #
+    # # clicar botão login google pra abrir no CRM
+    # print("click google_sso_button")
+    # driver.find_element(By.XPATH,
+    #     '//div[@class="loginBtn loginGoogle"]'
+    # ).click()
+
     # esperar CRM abrir
+    print("wait crm_page_open")
     WebDriverWait(driver, 60).until(
         ec.visibility_of_element_located(
             (
