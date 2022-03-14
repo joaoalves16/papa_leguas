@@ -76,21 +76,21 @@ def start_driver():
     ).click()
 
     # espera botão login google
-    # print("wait google_button")
-    # WebDriverWait(driver, 60).until(
-    #     ec.visibility_of_element_located(
-    #         (
-    #             By.XPATH,
-    #             '//div[@class="loginBtn loginGoogle"]',
-    #         )
-    #     )
-    # )
+    print("wait google_button")
+    WebDriverWait(driver, 60).until(
+        ec.visibility_of_element_located(
+            (
+                By.XPATH,
+                '//div[@class="loginBtn loginGoogle"]',
+            )
+        )
+    )
     #
     # # clicar botão login google pra abrir no CRM
-    # print("click google_sso_button")
-    # driver.find_element(By.XPATH,
-    #     '//div[@class="loginBtn loginGoogle"]'
-    # ).click()
+    print("click google_sso_button")
+    driver.find_element(By.XPATH,
+        '//div[@class="loginBtn loginGoogle"]'
+    ).click()
 
     # esperar CRM abrir
     print("wait crm_page_open")
