@@ -13,6 +13,7 @@ import logging
 import time
 import traceback
 import sys
+import os
 
 
 number = sys.argv[1]
@@ -23,7 +24,12 @@ dados = pd.read_csv(
 
 def start_driver():
     chrome_options = Options()
-    chrome_options.add_argument("--user-data-dir=chrome-data")
+    if os.getenv('APPDATA') == None:
+        print('OSX')
+        chrome_options.add_argument("--user-data-dir=chrome-data")
+    else:
+        print('Win')
+        chrome_options.add_argument("--user-data-dir=" + os.getenv('APPDATA') + "\chrome-data")
     if sys.argv[-1] != '-h':
         chrome_options.add_argument("--headless")
     chrome_options.add_argument("--window-size=1920,1080")

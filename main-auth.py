@@ -14,9 +14,16 @@ import logging
 import time
 import traceback
 import sys
+import os
 
 chrome_options = Options()
-chrome_options.add_argument("--user-data-dir=chrome-data")
+
+if os.getenv('APPDATA') == None:
+    print('OSX')
+    chrome_options.add_argument("--user-data-dir=chrome-data")
+else:
+    print('Win')
+    chrome_options.add_argument("--user-data-dir=" + os.getenv('APPDATA') + "\chrome-data")
 chrome_options.add_argument("--window-size=1920,1080")
 chrome_options.add_argument("--disable-gpu")
 chrome_options.add_argument("--no-sandbox")
