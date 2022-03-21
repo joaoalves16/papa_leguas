@@ -18,12 +18,14 @@ import os
 
 chrome_options = Options()
 
-if os.getenv('APPDATA') == None:
-    print('OSX')
-    chrome_options.add_argument("--user-data-dir=chrome-data")
-else:
-    print('Win')
-    chrome_options.add_argument("--user-data-dir=" + os.getenv('APPDATA') + "\chrome-data")
+# if os.getenv("APPDATA") == None:
+#    print("OSX")
+#    chrome_options.add_argument("--user-data-dir=chrome-data")
+# else:
+#    print("Win")
+#    chrome_options.add_argument(
+#        "--user-data-dir=" + os.getenv("APPDATA") + "\chrome-data"
+#    )
 chrome_options.add_argument("--window-size=1920,1080")
 chrome_options.add_argument("--disable-gpu")
 chrome_options.add_argument("--no-sandbox")
@@ -32,28 +34,29 @@ chrome_options.add_argument("--disable-setuid-sandbox")
 
 s = Service()
 driver = webdriver.Chrome(service=s, options=chrome_options)
-driver.get("https://owner-conversion.quintoandar.com.br/register/new/owner")
+driver.get("https://crm.quintoandar.com.br/tarefas/")
 
 # AUTENTICACAO
 print(":: start AUTENTICACAO ::")
 try:
     WebDriverWait(driver, 60).until(
         ec.visibility_of_element_located(
-            (
-                By.XPATH,
-                "/html/body/div/div[2]/div/div/div[1]/div[2]/ul/li/a",
-            )
+            (By.XPATH, "/html/body/div/div[2]/div/div/div[1]/div[2]/ul/li/a",)
         )
     )
 except TimeoutException:
     driver.get("https://owner-conversion.quintoandar.com.br/register/new/owner")
 print("click login_sso")
-driver.find_element(By.XPATH,
-    "/html/body/div/div[2]/div/div/div[1]/div[2]/ul/li/a"
-).click()
 
 Autentificao.autentificar(driver)
 
+WebDriverWait(driver, 60).until(
+    ec.visibility_of_element_located(
+        (By.XPATH, '//div[@class="loginBtn loginGoogle"]',)
+    )
+)
+print("click google_sso_button")
+driver.find_element(By.XPATH, '//div[@class="loginBtn loginGoogle"]').click()
 print("wait login_sso")
 WebDriverWait(driver, 200).until(
     ec.visibility_of_element_located(

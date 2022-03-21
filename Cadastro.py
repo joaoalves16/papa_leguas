@@ -841,22 +841,22 @@ class Cadastro:
                             match iptu_pagamento:
                                 case "Anualmente":
                                     driver.find_element_by_xpath(
-                                        "/html/body/div[1]/main/article/div/form/div[4]/div[2]/div/button[2]"
+                                        "/html/body/div[1]/main/article/div/form/div[3]/div[2]/div/button[2]"
                                     ).click()
                                     if iptu != 0:
                                         driver.find_element_by_xpath(
-                                            "/html/body/div[1]/main/article/div/form/div[5]/div/div/div[2]/div/div/div[2]/input"
+                                            "/html/body/div[1]/main/article/div/form/div[4]/div/div/div[2]/div/div/div[2]/input"
                                         ).send_keys(str(iptu))
                                 case "Não pago":
                                     driver.find_element_by_xpath(
-                                        "/html/body/div[1]/main/article/div/form/div[4]/div[2]/div/button[1]"
+                                        "/html/body/div[1]/main/article/div/form/div[3]/div[2]/div/button[1]"
                                     ).click()
                                 case "Mensalmente":
                                     driver.find_element_by_xpath(
-                                        "/html/body/div[1]/main/article/div/form/div[4]/div[2]/div/button[3]"
+                                        "/html/body/div[1]/main/article/div/form/div[3]/div[2]/div/button[3]"
                                     ).click()
                                     driver.find_element_by_xpath(
-                                        "/html/body/div[1]/main/article/div/form/div[5]/div[1]/div/div"
+                                        "/html/body/div[1]/main/article/div/form/div[4]/div[1]/div/div"
                                     ).click()
                                     time.sleep(1)
                                     driver.find_element_by_xpath(
@@ -864,7 +864,7 @@ class Cadastro:
                                     ).click()
                                     if iptu != 0:
                                         driver.find_element_by_xpath(
-                                            "/html/body/div[1]/main/article/div/form/div[5]/div[2]/div/div[2]/div/div/div[2]/input"
+                                            "/html/body/div[1]/main/article/div/form/div[4]/div[2]/div/div[2]/div/div/div[2]/input"
                                         ).send_keys(str(iptu))
                             try:
                                 WebDriverWait(driver, 10).until(
@@ -933,8 +933,33 @@ class Cadastro:
                                 sep=",",
                                 index=False,
                             )
-                            time.sleep(20)
-                            driver.get("https://crm.quintoandar.com.br/tarefas/")
+                            time.sleep(2)
+                            try:
+                                driver.get("https://crm.quintoandar.com.br/tarefas/")
+                            except TimeoutException:
+                                driver.get("https://crm.quintoandar.com.br/tarefas/")
+                            WebDriverWait(driver, 60).until(
+                                ec.visibility_of_element_located(
+                                    (
+                                        By.XPATH,
+                                        '//div[@class="loginBtn loginGoogle"]',
+                                    )
+                                )
+                            )
+                            print("click google_sso_button")
+                            driver.find_element(
+                                By.XPATH, '//div[@class="loginBtn loginGoogle"]'
+                            ).click()
+                            # esperar CRM abrir
+                            print("wait crm_page_open")
+                            WebDriverWait(driver, 60).until(
+                                ec.visibility_of_element_located(
+                                    (
+                                        By.ID,
+                                        "mainPanel",
+                                    )
+                                )
+                            )
                             try:
                                 WebDriverWait(driver, 60).until(
                                     ec.visibility_of_element_located(
