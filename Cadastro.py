@@ -1044,6 +1044,13 @@ class Cadastro:
                                         "/html/body/qa-tasks/paper-header-panel/div/div[1]/paper-drawer-panel/iron-selector/div[1]/div[1]/qa-task-details/paper-drawer-panel/iron-selector/div[1]/div[1]/div/div[2]/qa-link[3]/dialog-comentar/div/paper-button[2]"
                                     ).click()
                                     print('Tarefa cancelada')
+                                    dados[43][index] = "Tarefa cancelada"
+                                    dados.to_csv(
+                                        "./arquivos/dados" + number + ".csv",
+                                        header=None,
+                                        sep=",",
+                                        index=False,
+                                    )
                                     driver.close()
                                     driver.switch_to.window(driver.window_handles[0])
                                     driver.get(
