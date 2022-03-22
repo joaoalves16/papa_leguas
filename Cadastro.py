@@ -934,32 +934,7 @@ class Cadastro:
                                 index=False,
                             )
                             time.sleep(2)
-                            try:
-                                driver.get("https://crm.quintoandar.com.br/tarefas/")
-                            except TimeoutException:
-                                driver.get("https://crm.quintoandar.com.br/tarefas/")
-                            WebDriverWait(driver, 60).until(
-                                ec.visibility_of_element_located(
-                                    (
-                                        By.XPATH,
-                                        '//div[@class="loginBtn loginGoogle"]',
-                                    )
-                                )
-                            )
-                            print("click google_sso_button")
-                            driver.find_element(
-                                By.XPATH, '//div[@class="loginBtn loginGoogle"]'
-                            ).click()
-                            # esperar CRM abrir
-                            print("wait crm_page_open")
-                            WebDriverWait(driver, 60).until(
-                                ec.visibility_of_element_located(
-                                    (
-                                        By.ID,
-                                        "mainPanel",
-                                    )
-                                )
-                            )
+                            driver.get("https://crm.quintoandar.com.br/tarefas/")
                             try:
                                 WebDriverWait(driver, 60).until(
                                     ec.visibility_of_element_located(
@@ -1084,7 +1059,6 @@ class Cadastro:
                                 continue
                         except TimeoutException:
                             dados[43][index] = "Erro na confirmação"
-                            dados[42][index] = "1"
                             dados.to_csv(
                                 "./arquivos/dados" + number + ".csv",
                                 header=None,
