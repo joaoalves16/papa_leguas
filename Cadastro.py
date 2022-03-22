@@ -972,6 +972,7 @@ class Cadastro:
                                 driver.find_element_by_xpath(
                                     "/html/body/qa-tasks/paper-header-panel/paper-toolbar/div[1]/qa-header/div[1]/qa-search/input"
                                 ).send_keys(id_imovel)
+                                print('Pesquisando tarefa')
                                 try:
                                     WebDriverWait(driver, 60).until(
                                         ec.visibility_of_element_located(
@@ -1042,6 +1043,7 @@ class Cadastro:
                                     driver.find_element_by_xpath(
                                         "/html/body/qa-tasks/paper-header-panel/div/div[1]/paper-drawer-panel/iron-selector/div[1]/div[1]/qa-task-details/paper-drawer-panel/iron-selector/div[1]/div[1]/div/div[2]/qa-link[3]/dialog-comentar/div/paper-button[2]"
                                     ).click()
+                                    print('Tarefa cancelada')
                                     driver.close()
                                     driver.switch_to.window(driver.window_handles[0])
                                     driver.get(
