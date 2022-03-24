@@ -47,6 +47,14 @@ def start_driver():
     print(":: start AUTENTICACAO ::")
     Autentificao.autentificar(driver)
     driver.get("https://crm.quintoandar.com.br")
+    #espera primeiro botao login
+    print("wait login_sso")
+    WebDriverWait(driver, 60).until(
+       ec.visibility_of_element_located((By.ID, "zocial-google",))
+    )
+    #clica primeiro botao login
+    print("click login_sso")
+    driver.find_element(By.ID, "zocial-google").click()
     WebDriverWait(driver, 60).until(
         ec.visibility_of_element_located(
             (
@@ -55,27 +63,6 @@ def start_driver():
             )
         )
     )
-    # try:
-    #     WebDriverWait(driver, 60).until(
-    #         ec.visibility_of_element_located(
-    #             (
-    #                 By.XPATH,
-    #                 "/html/body/div/div[2]/div/div/div[1]/div[2]/ul/li/a",
-    #             )
-    #         )
-    #     )
-    # except TimeoutException:
-    #     driver.get("https://owner-conversion.quintoandar.com.br/register/new/owner")
-
-    # espera primeiro botao login
-    # print("wait login_sso")
-    # WebDriverWait(driver, 60).until(
-    #    ec.visibility_of_element_located((By.ID, "zocial-google",))
-    # )
-    #
-    ## clica primeiro botao login
-    # print("click login_sso")
-    # driver.find_element(By.ID, "zocial-google").click()
     #
     ## espera botão login google
     # print("wait google_button")
