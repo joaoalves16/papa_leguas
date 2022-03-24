@@ -1,5 +1,6 @@
 from Cadastro import Cadastro
 from Foto import Foto
+from Autentificao import Autentificao
 from datetime import datetime
 from selenium import webdriver
 from selenium.webdriver.support.ui import WebDriverWait
@@ -22,15 +23,16 @@ dados = pd.read_csv(
     "./arquivos/dados" + number + ".csv", header=None, sep=",", dtype=str
 )
 
+
 def start_driver():
     chrome_options = Options()
-    if os.getenv('APPDATA') == None:
-        print('OSX')
-        chrome_options.add_argument("--user-data-dir=chrome-data")
-    else:
-        print('Win')
-        chrome_options.add_argument("--user-data-dir=" + os.getenv('APPDATA') + "\chrome-data")
-    if sys.argv[-1] != '-h':
+    # if os.getenv('APPDATA') == None:
+    #    print('OSX')
+    #    chrome_options.add_argument("--user-data-dir=chrome-data")
+    # else:
+    #    print('Win')
+    #    chrome_options.add_argument("--user-data-dir=" + os.getenv('APPDATA') + "\chrome-data")
+    if sys.argv[-1] != "-h":
         chrome_options.add_argument("--headless")
     chrome_options.add_argument("--window-size=1920,1080")
     chrome_options.add_argument("--disable-gpu")
@@ -40,11 +42,19 @@ def start_driver():
 
     s = Service()
     driver = webdriver.Chrome(service=s, options=chrome_options)
-    # driver.get("https://owner-conversion.quintoandar.com.br/register/new/owner")
-    driver.get("https://crm.quintoandar.com.br")
-
+    driver.get("https://owner-conversion.quintoandar.com.br/register/new/owner")
     # AUTENTICACAO
     print(":: start AUTENTICACAO ::")
+    Autentificao.autentificar(driver)
+    driver.get("https://crm.quintoandar.com.br")
+    WebDriverWait(driver, 60).until(
+        ec.visibility_of_element_located(
+            (
+                By.XPATH,
+                "/html/body/qa-tasks/paper-header-panel/paper-toolbar/div[1]/qa-header/div[1]/qa-search/input",
+            )
+        )
+    )
     # try:
     #     WebDriverWait(driver, 60).until(
     #         ec.visibility_of_element_located(
@@ -57,53 +67,36 @@ def start_driver():
     # except TimeoutException:
     #     driver.get("https://owner-conversion.quintoandar.com.br/register/new/owner")
 
-
     # espera primeiro botao login
-    print("wait login_sso")
-    WebDriverWait(driver, 60).until(
-        ec.visibility_of_element_located(
-            (
-                By.ID,
-                "zocial-google",
-            )
-        )
-    )
-
-    # clica primeiro botao login
-    print("click login_sso")
-    driver.find_element(By.ID,
-        "zocial-google"
-    ).click()
-
-    # espera botão login google
-    print("wait google_button")
-    WebDriverWait(driver, 60).until(
-        ec.visibility_of_element_located(
-            (
-                By.XPATH,
-                '//div[@class="loginBtn loginGoogle"]',
-            )
-        )
-    )
+    # print("wait login_sso")
+    # WebDriverWait(driver, 60).until(
+    #    ec.visibility_of_element_located((By.ID, "zocial-google",))
+    # )
     #
-    # # clicar botão login google pra abrir no CRM
-    print("click google_sso_button")
-    driver.find_element(By.XPATH,
-        '//div[@class="loginBtn loginGoogle"]'
-    ).click()
-
-    # esperar CRM abrir
-    print("wait crm_page_open")
-    WebDriverWait(driver, 60).until(
-        ec.visibility_of_element_located(
-            (
-                By.ID,
-                'mainPanel',
-            )
-        )
-    )
+    ## clica primeiro botao login
+    # print("click login_sso")
+    # driver.find_element(By.ID, "zocial-google").click()
+    #
+    ## espera botão login google
+    # print("wait google_button")
+    # WebDriverWait(driver, 60).until(
+    #    ec.visibility_of_element_located(
+    #        (By.XPATH, '//div[@class="loginBtn loginGoogle"]',)
+    #    )
+    # )
+    ##
+    ## # clicar botão login google pra abrir no CRM
+    # print("click google_sso_button")
+    # driver.find_element(By.XPATH, '//div[@class="loginBtn loginGoogle"]').click()
+    #
+    ## esperar CRM abrir
+    # print("wait crm_page_open")
+    # WebDriverWait(driver, 60).until(
+    #    ec.visibility_of_element_located((By.ID, "mainPanel",))
+    # )
 
     return driver
+
 
 # FOTOS
 def run_foto(dados, fotos, driver):
@@ -111,7 +104,7 @@ def run_foto(dados, fotos, driver):
         print(":: start FOTO ::")
         Foto.cadastrarFotos(dados, fotos, driver)
     except Exception as e:
-        print('DEU ERRO:')
+        print("DEU ERRO:")
         print(e)
         logging.error(traceback.format_exc())
         driver.save_screenshot(
@@ -119,5 +112,6 @@ def run_foto(dados, fotos, driver):
         )
         driver.quit()
         run_foto(dados, fotos, start_driver())
+
 
 run_foto(dados, fotos, start_driver())
