@@ -269,6 +269,14 @@ class Cadastro:
                                             driver.find_element_by_xpath(
                                                 "/html/body/div[1]/main/article/div/div/div[2]/form/div[2]/div[3]/div/div[4]/div/div/div/div/div/input"
                                             ).send_keys(complemento)
+                                        WebDriverWait(driver, 60).until(
+                                                ec.visibility_of_element_located(
+                                                    (
+                                                        By.XPATH,
+                                                        "/html/body/div[1]/main/article/div/div/div[2]/form/div[3]/div/div[2]/div[1]/label/span[1]",
+                                                    )
+                                                )
+                                            )
                                         driver.find_element_by_xpath(
                                             "/html/body/div[1]/main/article/div/div/div[2]/form/div[3]/div/div[2]/div[1]/label/span[1]"
                                         ).click()
@@ -907,12 +915,14 @@ class Cadastro:
                                 "https://owner-conversion.quintoandar.com.br/register/new/owner"
                             )
                             continue
+
+                        elemento_pagina_confirmacao = "mui-component-select-photographersSelect"
                         try:
                             WebDriverWait(driver, 60).until(
                                 ec.visibility_of_element_located(
                                     (
-                                        By.XPATH,
-                                        "/html/body/div[1]/main/article/div/form/div/div[2]/div/label/span/span",
+                                        By.ID,
+                                        elemento_pagina_confirmacao,
                                     )
                                 )
                             )
