@@ -273,61 +273,54 @@ class Foto:
                                 (By.ID, "uploadProgressBar")
                             )
                         )
-                    WebDriverWait(driver, 60).until(
-                        ec.invisibility_of_element_located(
-                            (By.XPATH, "uploadProgressBar")
-                        )
-                    )
-
-                    # driver.find_element(By.XPATH, '/html/body/div[9]/div/div/form/div[2]/div[5]/div/div[2]/div[1]/div[1]/label').click()
-
                     # NOVA PAG PUBLICAR
 
                     # tenta entrar 2x na pag publicacao, se n conseguir o script para
-                    # try:
-                    #    driver.get("https://user.quintoandar.com.br/imovel/editar/"+id_imovel+"/fotos")
-                    # except:
-                    #    driver.get("https://user.quintoandar.com.br/imovel/editar/"+id_imovel+"/fotos")
-                    #
-                    # WebDriverWait(driver, 60).until(
-                    #    ec.visibility_of_element_located(
-                    #        (By.ID, "btnPublicar")
-                    #    )
-                    # )
-                    # driver.find_element_by_id(
-                    #    'btnPublicar',
-                    # ).click()
-                    #
-                    #
-                    # WebDriverWait(driver, 60).until(
-                    #    ec.visibility_of_element_located(
-                    #        (By.ID, "popUpCallBackPublicar")
-                    #    )
-                    # )
+                    try:
+                        driver.get(
+                            "https://user.quintoandar.com.br/imovel/editar/"
+                            + id_imovel
+                            + "/fotos"
+                        )
+                    except:
+                        driver.get(
+                            "https://user.quintoandar.com.br/imovel/editar/"
+                            + id_imovel
+                            + "/fotos"
+                        )
+
+                    WebDriverWait(driver, 60).until(
+                        ec.visibility_of_element_located((By.ID, "btnPublicar"))
+                    )
+                    driver.find_element_by_id("btnPublicar",).click()
+
+                    WebDriverWait(driver, 60).until(
+                        ec.visibility_of_element_located(
+                            (By.ID, "popUpCallBackPublicar")
+                        )
+                    )
 
                     # FIM NOVA PAG PUBLICAR
 
                     # time.sleep(10000)
                     # print("aguardando botao salvar")
                     # time.sleep(2)
-                    # driver.execute_script("window.scrollTo(0, document.body.scrollHeight)")
+                    # driver.execute_script(
+                    #    "window.scrollTo(0, document.body.scrollHeight)"
+                    # )
                     # time.sleep(2)
                     # WebDriverWait(driver, 200).until(
-                    #     ec.visibility_of_element_located(
-                    #         (
-                    #             By.XPATH,
-                    #             '//*[@id="salvar_publicar"]',
-                    #         )
-                    #     )
+                    #    ec.visibility_of_element_located(
+                    #        (By.XPATH, '//*[@id="salvar_publicar"]',)
+                    #    )
                     # )
-
+                    # print("chegou?")
                     # time.sleep(2)
-                    # driver.execute_script("window.scrollTo(0, document.body.scrollHeight)")
+                    # driver.execute_script(
+                    #    "window.scrollTo(0, document.body.scrollHeight)"
+                    # )
                     # time.sleep(2)
-
-                    # driver.find_element(By.XPATH,
-                    #     '//*[@id="salvar_publicar"]',
-                    # ).click()
+                    # driver.find_element(By.XPATH, '//*[@id="salvar_publicar"]',).click()
 
                     print(
                         "finish imagem imob ("
@@ -337,32 +330,23 @@ class Foto:
                         + ")"
                     )
 
-                    # try:
-                    #     WebDriverWait(driver, 10).until(
-                    #         ec.visibility_of_element_located(
-                    #             (
-                    #                 By.XPATH,
-                    #                 '//div[@class="errosAdmin"]',
-                    #             )
-                    #         )
-                    #     )
-                    #     dados[45][index] = "error-" + driver.find_element_by_class("errosAdmin").text
-                    #     dados.to_csv(
-                    #         "./arquivos/dados" + number + ".csv",
-                    #         header=None,
-                    #         sep=",",
-                    #         index=False,
-                    #     )
-                    # except TimeoutException:
-
-                    # driver.find_elements_by_class_name("foto-container")
-                    #
-                    # ec.visibility_of_element_located(
-                    #     (
-                    #         By.XPATH,
-                    #         '//div[@class="errosAdmin"]',
-                    #     )
-                    # )
+                    try:
+                        WebDriverWait(driver, 10).until(
+                            ec.visibility_of_element_located(
+                                (By.XPATH, '//div[@class="errosAdmin"]',)
+                            )
+                        )
+                        dados[45][index] = (
+                            "error-" + driver.find_element_by_class("errosAdmin").text
+                        )
+                        dados.to_csv(
+                            "./arquivos/dados" + number + ".csv",
+                            header=None,
+                            sep=",",
+                            index=False,
+                        )
+                    except TimeoutException:
+                        driver.find_elements_by_class_name("foto-container")
                     salvar_sucesso(dados, number, index)
                 except TimeoutException:
                     salvar_erro(dados, number, index, "pag_fotos", "pag_fotos")

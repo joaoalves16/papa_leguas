@@ -39,6 +39,8 @@ def start_driver():
     chrome_options.add_argument("--no-sandbox")
     chrome_options.add_argument("--start-maximized")
     chrome_options.add_argument("--disable-setuid-sandbox")
+    user_agent = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.74 Safari/537.36"
+    chrome_options.add_argument(f"user-agent={user_agent}")
 
     s = Service()
     driver = webdriver.Chrome(service=s, options=chrome_options)
@@ -46,15 +48,23 @@ def start_driver():
     # AUTENTICACAO
     print(":: start AUTENTICACAO ::")
     Autentificao.autentificar(driver)
-    driver.get("https://crm.quintoandar.com.br")
-    #espera primeiro botao login
-    print("wait login_sso")
-    WebDriverWait(driver, 60).until(
-       ec.visibility_of_element_located((By.ID, "zocial-google",))
+    WebDriverWait(driver, 200).until(
+        ec.visibility_of_element_located(
+            (
+                By.XPATH,
+                "/html/body/div[1]/main/article/div/div[3]/div/form/div[1]/div/div/div/div/div/input",
+            )
+        )
     )
-    #clica primeiro botao login
-    print("click login_sso")
-    driver.find_element(By.ID, "zocial-google").click()
+    driver.get("https://crm.quintoandar.com.br")
+    # espera primeiro botao login
+    # print("wait login_sso")
+    # WebDriverWait(driver, 60).until(
+    #    ec.visibility_of_element_located((By.ID, "zocial-google",))
+    # )
+    ## clica primeiro botao login
+    # print("click login_sso")
+    # driver.find_element(By.ID, "zocial-google").click()
     WebDriverWait(driver, 60).until(
         ec.visibility_of_element_located(
             (
