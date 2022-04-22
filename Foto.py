@@ -276,30 +276,30 @@ class Foto:
                     # NOVA PAG PUBLICAR
 
                     # tenta entrar 2x na pag publicacao, se n conseguir o script para
-                    try:
-                        driver.get(
-                            "https://user.quintoandar.com.br/imovel/editar/"
-                            + id_imovel
-                            + "/fotos"
-                        )
-                    except:
-                        driver.get(
-                            "https://user.quintoandar.com.br/imovel/editar/"
-                            + id_imovel
-                            + "/fotos"
-                        )
-
-                    WebDriverWait(driver, 60).until(
-                        ec.visibility_of_element_located((By.ID, "btnPublicar"))
-                    )
-                    driver.find_element_by_id("btnPublicar",).click()
-
-                    WebDriverWait(driver, 60).until(
-                        ec.visibility_of_element_located(
-                            (By.ID, "popUpCallBackPublicar")
-                        )
-                    )
-
+                    # try:
+                    #    driver.get(
+                    #        "https://user.quintoandar.com.br/imovel/editar/"
+                    #        + id_imovel
+                    #        + "/fotos"
+                    #    )
+                    # except:
+                    #    driver.get(
+                    #        "https://user.quintoandar.com.br/imovel/editar/"
+                    #        + id_imovel
+                    #        + "/fotos"
+                    #    )
+                    #
+                    # WebDriverWait(driver, 60).until(
+                    #    ec.visibility_of_element_located((By.ID, "btnPublicar"))
+                    # )
+                    # driver.find_element_by_id("btnPublicar",).click()
+                    #
+                    # WebDriverWait(driver, 60).until(
+                    #    ec.visibility_of_element_located(
+                    #        (By.ID, "popUpCallBackPublicar")
+                    #    )
+                    # )
+                    #
                     # FIM NOVA PAG PUBLICAR
 
                     # time.sleep(10000)

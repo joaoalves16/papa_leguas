@@ -76,13 +76,13 @@ class Autentificao:
                 ec.visibility_of_element_located(
                     (
                         By.XPATH,
-                        "/html/body/div[1]/div[1]/div[2]/div/div[2]/div/div/div[2]/div/div[1]/div/form/span/section/div/div/div[1]/ul/li[3]/div",
+                        "/html/body/div[1]/div[1]/div[2]/div/div[2]/div/div/div[2]/div/div[1]/div/form/span/section/div/div/div[1]/ul/li[3]",
                     )
                 )
             )
             time.sleep(1)
             driver.find_element_by_xpath(
-                "/html/body/div[1]/div[1]/div[2]/div/div[2]/div/div/div[2]/div/div[1]/div/form/span/section/div/div/div[1]/ul/li[3]/div"
+                "/html/body/div[1]/div[1]/div[2]/div/div[2]/div/div/div[2]/div/div[1]/div/form/span/section/div/div/div[1]/ul/li[3]"
             ).click()
         except TimeoutException:
             driver.get("https://owner-conversion.quintoandar.com.br/register/new/owner")
