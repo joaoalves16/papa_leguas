@@ -9,6 +9,7 @@ import pandas as pd
 import time
 import sys
 
+
 def check_exists_by_xpath(xpath, webdriver):
     try:
         webdriver.find_element_by_xpath(xpath)
@@ -191,7 +192,9 @@ class Cadastro:
                                 driver.find_element_by_xpath(
                                     "/html/body/div[1]/main/article/div/div/div[2]/form/form/div/div[1]/div[2]/div[1]/label[2]/span[1]"
                                 ).click()
-                                driver.find_element_by_xpath("/html/body/div[1]/main/article/div/div/div[2]/form/form/div/div[2]/div/div/div/input").send_keys(str(cep))
+                                driver.find_element_by_xpath(
+                                    "/html/body/div[1]/main/article/div/div/div[2]/form/form/div/div[2]/div/div/div/input"
+                                ).send_keys(str(cep))
                                 try:
                                     WebDriverWait(driver, 60).until(
                                         ec.visibility_of_element_located(
@@ -262,12 +265,9 @@ class Cadastro:
                                         driver.find_element_by_xpath(
                                             "/html/body/div[1]/main/article/div/div/div[2]/form/form/div/div[3]/div/div[3]/div/div/div/div/div/input"
                                         ).send_keys(str(numero))
-                                        driver.find_element_by_xpath(
-                                            "/html/body/div[1]/main/article/div/div/div[2]/form/form/div/div[3]/div/div[4]/div/div/div/div/div/input"
-                                        ).send_keys(str(andar))
                                         if str(complemento) != "nan":
                                             driver.find_element_by_xpath(
-                                                "/html/body/div[1]/main/article/div/div/div[2]/form/form/div/div[3]/div/div[5]/div/div/div/div/div/input"
+                                                "/html/body/div[1]/main/article/div/div/div[2]/form/form/div/div[3]/div/div[4]/div/div/div/div/div/input"
                                             ).send_keys(complemento)
                                         try:
                                             WebDriverWait(driver, 60).until(
@@ -278,6 +278,7 @@ class Cadastro:
                                                     )
                                                 )
                                             )
+                                            time.sleep(2)
                                             driver.find_element_by_xpath(
                                                 "/html/body/div[1]/main/article/div/div/div[2]/form/div[2]/div/div[2]/div[1]/label/span[1]"
                                             ).click()
@@ -512,7 +513,7 @@ class Cadastro:
                                 ).click()
                             if pd.isna(descricao) == False:
                                 driver.find_element_by_xpath(
-                                "//textarea[@name='houseDescription']"
+                                    "//textarea[@name='houseDescription']"
                                 ).send_keys(descricao)
                             if portaria == "Não":
                                 time.sleep(2)
@@ -926,7 +927,9 @@ class Cadastro:
                             )
                             continue
 
-                        elemento_pagina_confirmacao = "mui-component-select-photographersSelect"
+                        elemento_pagina_confirmacao = (
+                            "mui-component-select-photographersSelect"
+                        )
                         try:
                             WebDriverWait(driver, 60).until(
                                 ec.visibility_of_element_located(
@@ -954,129 +957,132 @@ class Cadastro:
                                 index=False,
                             )
                             time.sleep(2)
-                            driver.get("https://crm.quintoandar.com.br/tarefas/")
-                            try:
-                                WebDriverWait(driver, 60).until(
-                                    ec.visibility_of_element_located(
-                                        (
-                                            By.XPATH,
-                                            "/html/body/qa-tasks/paper-header-panel/paper-toolbar/div[1]/qa-header/div[1]/qa-search/input",
-                                        )
-                                    )
-                                )
-                                driver.find_element_by_xpath(
-                                    "/html/body/qa-tasks/paper-header-panel/paper-toolbar/div[1]/qa-header/div[1]/qa-search/input"
-                                ).send_keys(id_imovel)
-                                print('Pesquisando tarefa')
-                                try:
-                                    WebDriverWait(driver, 60).until(
-                                        ec.visibility_of_element_located(
-                                            (
-                                                By.XPATH,
-                                                "/html/body/qa-tasks/paper-header-panel/paper-toolbar/div[1]/qa-header/div[1]/qa-search/iron-dropdown/div/qa-loading/div/div[4]/div/qa-search-item/div/qa-search-task-item",
-                                            )
-                                        )
-                                    )
-                                except TimeoutException:
-                                    dados[43][index] = "Tarefa não encontrada"
-                                    dados.to_csv(
-                                        "./arquivos/dados" + number + ".csv",
-                                        header=None,
-                                        sep=",",
-                                        index=False,
-                                    )
-                                    driver.get(
-                                        "https://owner-conversion.quintoandar.com.br/register/new/owner"
-                                    )
-                                    continue
-                                driver.find_element_by_xpath(
-                                    "/html/body/qa-tasks/paper-header-panel/paper-toolbar/div[1]/qa-header/div[1]/qa-search/iron-dropdown/div/qa-loading/div/div[4]/div/qa-search-item/div/qa-search-task-item"
-                                ).click()
-                                WebDriverWait(driver, 5).until(
-                                    ec.number_of_windows_to_be(2)
-                                )
-                                driver.switch_to.window(driver.window_handles[1])
-                                try:
-                                    WebDriverWait(driver, 60).until(
-                                        ec.visibility_of_element_located(
-                                            (
-                                                By.XPATH,
-                                                "/html/body/qa-tasks/paper-header-panel/div/div[1]/paper-drawer-panel/iron-selector/div[1]/div[1]/qa-task-details/paper-drawer-panel/iron-selector/div[1]/div[1]/div/div[2]/qa-link[3]/paper-button",
-                                            )
-                                        )
-                                    )
-                                    driver.find_element_by_xpath(
-                                        "/html/body/qa-tasks/paper-header-panel/div/div[1]/paper-drawer-panel/iron-selector/div[1]/div[1]/qa-task-details/paper-drawer-panel/iron-selector/div[1]/div[1]/div/div[2]/qa-link[3]/paper-button"
-                                    ).click()
-                                    try:
-                                        WebDriverWait(driver, 60).until(
-                                            ec.visibility_of_element_located(
-                                                (
-                                                    By.XPATH,
-                                                    "/html/body/qa-tasks/paper-header-panel/div/div[1]/paper-drawer-panel/iron-selector/div[1]/div[1]/qa-task-details/paper-drawer-panel/iron-selector/div[1]/div[1]/div/div[2]/qa-link[3]/dialog-comentar/form/paper-textarea/paper-input-container/div[1]/div/iron-autogrow-textarea/div[2]/textarea",
-                                                )
-                                            )
-                                        )
-                                    except TimeoutException:
-                                        dados[43][
-                                            index
-                                        ] = "Caixa de comentario não encontrada"
-                                        dados[42][index] = "1"
-                                        dados.to_csv(
-                                            "./arquivos/dados" + number + ".csv",
-                                            header=None,
-                                            sep=",",
-                                            index=False,
-                                        )
-                                        driver.get(
-                                            "https://owner-conversion.quintoandar.com.br/register/new/owner"
-                                        )
-                                        continue
-                                    driver.find_element_by_xpath(
-                                        "/html/body/qa-tasks/paper-header-panel/div/div[1]/paper-drawer-panel/iron-selector/div[1]/div[1]/qa-task-details/paper-drawer-panel/iron-selector/div[1]/div[1]/div/div[2]/qa-link[3]/dialog-comentar/form/paper-textarea/paper-input-container/div[1]/div/iron-autogrow-textarea/div[2]/textarea"
-                                    ).send_keys("For Brokers - 3P Supply")
-                                    driver.find_element_by_xpath(
-                                        "/html/body/qa-tasks/paper-header-panel/div/div[1]/paper-drawer-panel/iron-selector/div[1]/div[1]/qa-task-details/paper-drawer-panel/iron-selector/div[1]/div[1]/div/div[2]/qa-link[3]/dialog-comentar/div/paper-button[2]"
-                                    ).click()
-                                    print('Tarefa cancelada')
-                                    dados[43][index] = "Tarefa cancelada"
-                                    dados.to_csv(
-                                        "./arquivos/dados" + number + ".csv",
-                                        header=None,
-                                        sep=",",
-                                        index=False,
-                                    )
-                                    driver.close()
-                                    driver.switch_to.window(driver.window_handles[0])
-                                    driver.get(
-                                        "https://owner-conversion.quintoandar.com.br/register/new/owner"
-                                    )
-                                except TimeoutException:
-                                    dados[43][
-                                        index
-                                    ] = "Botão de cancelamento de tarefa não encontrado"
-                                    dados.to_csv(
-                                        "./arquivos/dados" + number + ".csv",
-                                        header=None,
-                                        sep=",",
-                                        index=False,
-                                    )
-                                    driver.get(
-                                        "https://owner-conversion.quintoandar.com.br/register/new/owner"
-                                    )
-                                    continue
-                            except TimeoutException:
-                                dados[43][index] = "Barra de pesquisa não encontrada"
-                                dados.to_csv(
-                                    "./arquivos/dados" + number + ".csv",
-                                    header=None,
-                                    sep=",",
-                                    index=False,
-                                )
-                                driver.get(
-                                    "https://owner-conversion.quintoandar.com.br/register/new/owner"
-                                )
-                                continue
+                            driver.get(
+                                "https://owner-conversion.quintoandar.com.br/register/new/owner"
+                            )
+                            # driver.get("https://crm.quintoandar.com.br/tarefas/")
+                            # try:
+                            #    WebDriverWait(driver, 60).until(
+                            #        ec.visibility_of_element_located(
+                            #            (
+                            #                By.XPATH,
+                            #                "/html/body/qa-tasks/paper-header-panel/paper-toolbar/div[1]/qa-header/div[1]/qa-search/input",
+                            #            )
+                            #        )
+                            #    )
+                            #    driver.find_element_by_xpath(
+                            #        "/html/body/qa-tasks/paper-header-panel/paper-toolbar/div[1]/qa-header/div[1]/qa-search/input"
+                            #    ).send_keys(id_imovel)
+                            #    print('Pesquisando tarefa')
+                            #    try:
+                            #        WebDriverWait(driver, 60).until(
+                            #            ec.visibility_of_element_located(
+                            #                (
+                            #                    By.XPATH,
+                            #                    "/html/body/qa-tasks/paper-header-panel/paper-toolbar/div[1]/qa-header/div[1]/qa-search/iron-dropdown/div/qa-loading/div/div[4]/div/qa-search-item/div/qa-search-task-item",
+                            #                )
+                            #            )
+                            #        )
+                            #    except TimeoutException:
+                            #        dados[43][index] = "Tarefa não encontrada"
+                            #        dados.to_csv(
+                            #            "./arquivos/dados" + number + ".csv",
+                            #            header=None,
+                            #            sep=",",
+                            #            index=False,
+                            #        )
+                            #        driver.get(
+                            #            "https://owner-conversion.quintoandar.com.br/register/new/owner"
+                            #        )
+                            #        continue
+                            #    driver.find_element_by_xpath(
+                            #        "/html/body/qa-tasks/paper-header-panel/paper-toolbar/div[1]/qa-header/div[1]/qa-search/iron-dropdown/div/qa-loading/div/div[4]/div/qa-search-item/div/qa-search-task-item"
+                            #    ).click()
+                            #    WebDriverWait(driver, 5).until(
+                            #        ec.number_of_windows_to_be(2)
+                            #    )
+                            #    driver.switch_to.window(driver.window_handles[1])
+                            #    try:
+                            #        WebDriverWait(driver, 60).until(
+                            #            ec.visibility_of_element_located(
+                            #                (
+                            #                    By.XPATH,
+                            #                    "/html/body/qa-tasks/paper-header-panel/div/div[1]/paper-drawer-panel/iron-selector/div[1]/div[1]/qa-task-details/paper-drawer-panel/iron-selector/div[1]/div[1]/div/div[2]/qa-link[3]/paper-button",
+                            #                )
+                            #            )
+                            #        )
+                            #        driver.find_element_by_xpath(
+                            #            "/html/body/qa-tasks/paper-header-panel/div/div[1]/paper-drawer-panel/iron-selector/div[1]/div[1]/qa-task-details/paper-drawer-panel/iron-selector/div[1]/div[1]/div/div[2]/qa-link[3]/paper-button"
+                            #        ).click()
+                            #        try:
+                            #            WebDriverWait(driver, 60).until(
+                            #                ec.visibility_of_element_located(
+                            #                    (
+                            #                        By.XPATH,
+                            #                        "/html/body/qa-tasks/paper-header-panel/div/div[1]/paper-drawer-panel/iron-selector/div[1]/div[1]/qa-task-details/paper-drawer-panel/iron-selector/div[1]/div[1]/div/div[2]/qa-link[3]/dialog-comentar/form/paper-textarea/paper-input-container/div[1]/div/iron-autogrow-textarea/div[2]/textarea",
+                            #                    )
+                            #                )
+                            #            )
+                            #        except TimeoutException:
+                            #            dados[43][
+                            #                index
+                            #            ] = "Caixa de comentario não encontrada"
+                            #            dados[42][index] = "1"
+                            #            dados.to_csv(
+                            #                "./arquivos/dados" + number + ".csv",
+                            #                header=None,
+                            #                sep=",",
+                            #                index=False,
+                            #            )
+                            #            driver.get(
+                            #                "https://owner-conversion.quintoandar.com.br/register/new/owner"
+                            #            )
+                            #            continue
+                            #        driver.find_element_by_xpath(
+                            #            "/html/body/qa-tasks/paper-header-panel/div/div[1]/paper-drawer-panel/iron-selector/div[1]/div[1]/qa-task-details/paper-drawer-panel/iron-selector/div[1]/div[1]/div/div[2]/qa-link[3]/dialog-comentar/form/paper-textarea/paper-input-container/div[1]/div/iron-autogrow-textarea/div[2]/textarea"
+                            #        ).send_keys("For Brokers - 3P Supply")
+                            #        driver.find_element_by_xpath(
+                            #            "/html/body/qa-tasks/paper-header-panel/div/div[1]/paper-drawer-panel/iron-selector/div[1]/div[1]/qa-task-details/paper-drawer-panel/iron-selector/div[1]/div[1]/div/div[2]/qa-link[3]/dialog-comentar/div/paper-button[2]"
+                            #        ).click()
+                            #        print('Tarefa cancelada')
+                            #        dados[43][index] = "Tarefa cancelada"
+                            #        dados.to_csv(
+                            #            "./arquivos/dados" + number + ".csv",
+                            #            header=None,
+                            #            sep=",",
+                            #            index=False,
+                            #        )
+                            #        driver.close()
+                            #        driver.switch_to.window(driver.window_handles[0])
+                            #        driver.get(
+                            #            "https://owner-conversion.quintoandar.com.br/register/new/owner"
+                            #        )
+                            #    except TimeoutException:
+                            #        dados[43][
+                            #            index
+                            #        ] = "Botão de cancelamento de tarefa não encontrado"
+                            #        dados.to_csv(
+                            #            "./arquivos/dados" + number + ".csv",
+                            #            header=None,
+                            #            sep=",",
+                            #            index=False,
+                            #        )
+                            #        driver.get(
+                            #            "https://owner-conversion.quintoandar.com.br/register/new/owner"
+                            #        )
+                            #        continue
+                            # except TimeoutException:
+                            #    dados[43][index] = "Barra de pesquisa não encontrada"
+                            #    dados.to_csv(
+                            #        "./arquivos/dados" + number + ".csv",
+                            #        header=None,
+                            #        sep=",",
+                            #        index=False,
+                            #    )
+                            #    driver.get(
+                            #        "https://owner-conversion.quintoandar.com.br/register/new/owner"
+                            #    )
+                            #    continue
                         except TimeoutException:
                             dados[43][index] = "Erro na confirmação"
                             dados.to_csv(

@@ -8,6 +8,7 @@ from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support import expected_conditions as ec
 from selenium.webdriver.common.by import By
+from credenciais import USER, PASSWORD
 from selenium.common.exceptions import TimeoutException
 import pandas as pd
 import logging
@@ -45,7 +46,7 @@ def start_driver():
     s = Service()
     driver = webdriver.Chrome(service=s, options=chrome_options)
     driver.get("https://owner-conversion.quintoandar.com.br/register/new/owner")
-    # AUTENTICACAO
+    ## AUTENTICACAO
     print(":: start AUTENTICACAO ::")
     Autentificao.autentificar(driver)
     WebDriverWait(driver, 200).until(
@@ -59,13 +60,13 @@ def start_driver():
     driver.get("https://crm.quintoandar.com.br")
     # espera primeiro botao login
     # print("wait login_sso")
-    # WebDriverWait(driver, 60).until(
+    # WebDriverWait(driver, 200).until(
     #    ec.visibility_of_element_located((By.ID, "zocial-google",))
     # )
-    ## clica primeiro botao login
+    ### clica primeiro botao login
     # print("click login_sso")
     # driver.find_element(By.ID, "zocial-google").click()
-    WebDriverWait(driver, 60).until(
+    WebDriverWait(driver, 200).until(
         ec.visibility_of_element_located(
             (
                 By.XPATH,
@@ -73,25 +74,8 @@ def start_driver():
             )
         )
     )
-    #
-    ## espera botão login google
-    # print("wait google_button")
-    # WebDriverWait(driver, 60).until(
-    #    ec.visibility_of_element_located(
-    #        (By.XPATH, '//div[@class="loginBtn loginGoogle"]',)
-    #    )
-    # )
-    ##
-    ## # clicar botão login google pra abrir no CRM
-    # print("click google_sso_button")
-    # driver.find_element(By.XPATH, '//div[@class="loginBtn loginGoogle"]').click()
-    #
-    ## esperar CRM abrir
-    # print("wait crm_page_open")
-    # WebDriverWait(driver, 60).until(
-    #    ec.visibility_of_element_located((By.ID, "mainPanel",))
-    # )
 
+    ## espera botão login google
     return driver
 
 

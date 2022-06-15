@@ -19,6 +19,7 @@ pyautogui.FAILSAFE = False
 def auto_down(url, filename):
     try:
         urllib.request.urlretrieve(url, filename)
+        time.sleep(20)
     except:
         print("Network conditions is not good.Reloading.")
         auto_down(url, filename)
@@ -276,33 +277,32 @@ class Foto:
                     # NOVA PAG PUBLICAR
 
                     # tenta entrar 2x na pag publicacao, se n conseguir o script para
-                    # try:
-                    #    driver.get(
-                    #        "https://user.quintoandar.com.br/imovel/editar/"
-                    #        + id_imovel
-                    #        + "/fotos"
-                    #    )
-                    # except:
-                    #    driver.get(
-                    #        "https://user.quintoandar.com.br/imovel/editar/"
-                    #        + id_imovel
-                    #        + "/fotos"
-                    #    )
-                    #
-                    # WebDriverWait(driver, 60).until(
-                    #    ec.visibility_of_element_located((By.ID, "btnPublicar"))
-                    # )
-                    # driver.find_element_by_id("btnPublicar",).click()
-                    #
-                    # WebDriverWait(driver, 60).until(
-                    #    ec.visibility_of_element_located(
-                    #        (By.ID, "popUpCallBackPublicar")
-                    #    )
-                    # )
-                    #
+                    try:
+                        driver.get(
+                            "https://user.quintoandar.com.br/imovel/editar/"
+                            + id_imovel
+                            + "/fotos"
+                        )
+                    except:
+                        driver.get(
+                            "https://user.quintoandar.com.br/imovel/editar/"
+                            + id_imovel
+                            + "/fotos"
+                        )
+
+                    WebDriverWait(driver, 60).until(
+                        ec.visibility_of_element_located((By.ID, "btnPublicar"))
+                    )
+                    driver.find_element_by_id("btnPublicar",).click()
+
+                    WebDriverWait(driver, 60).until(
+                        ec.visibility_of_element_located(
+                            (By.ID, "popUpCallBackPublicar")
+                        )
+                    )
+
                     # FIM NOVA PAG PUBLICAR
 
-                    # time.sleep(10000)
                     # print("aguardando botao salvar")
                     # time.sleep(2)
                     # driver.execute_script(
@@ -321,7 +321,6 @@ class Foto:
                     # )
                     # time.sleep(2)
                     # driver.find_element(By.XPATH, '//*[@id="salvar_publicar"]',).click()
-
                     print(
                         "finish imagem imob ("
                         + id_imovel_imob
@@ -329,7 +328,6 @@ class Foto:
                         + id_imovel
                         + ")"
                     )
-
                     try:
                         WebDriverWait(driver, 10).until(
                             ec.visibility_of_element_located(
