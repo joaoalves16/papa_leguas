@@ -17,7 +17,7 @@ class Autentificao:
                 )
             )
         except TimeoutException:
-            driver.get("https://owner-conversion.quintoandar.com.br/register/new/owner")
+            driver.get("")
         driver.find_element_by_xpath(
             "/html/body/div/div[2]/div/div/div[1]/div[2]/ul/li/a"
         ).click()
@@ -31,7 +31,7 @@ class Autentificao:
                 )
             )
         except TimeoutException:
-            driver.get("https://owner-conversion.quintoandar.com.br/register/new/owner")
+            driver.get("")
         driver.find_element_by_xpath(
             "/html/body/div[1]/div[1]/div[2]/div/div[2]/div/div/div[2]/div/div[1]/div/form/span/section/div/div/div[1]/div/div[1]/div/div[1]/input"
         ).send_keys(USER)
@@ -48,7 +48,7 @@ class Autentificao:
                 )
             )
         except TimeoutException:
-            driver.get("https://owner-conversion.quintoandar.com.br/register/new/owner")
+            driver.get("")
         driver.find_element_by_xpath(
             "/html/body/div[1]/div[1]/div[2]/div/div[2]/div/div/div[2]/div/div[1]/div/form/span/section/div/div/div[1]/div[1]/div/div/div/div/div[1]/div/div[1]/input"
         ).send_keys(PASSWORD)
@@ -70,7 +70,7 @@ class Autentificao:
                 "/html/body/div[1]/div[1]/div[2]/div/div[2]/div/div/div[2]/div/div[2]/div[2]/div[2]/div/div/button"
             ).click()
         except TimeoutException:
-            driver.get("https://owner-conversion.quintoandar.com.br/register/new/owner")
+            driver.get("r")
         try:
             WebDriverWait(driver, 60).until(
                 ec.visibility_of_element_located(
@@ -85,7 +85,7 @@ class Autentificao:
                 "/html/body/div[1]/div[1]/div[2]/div/div[2]/div/div/div[2]/div/div[1]/div/form/span/section/div/div/div[1]/ul/li[3]"
             ).click()
         except TimeoutException:
-            driver.get("https://owner-conversion.quintoandar.com.br/register/new/owner")
+            driver.get("")
         totp = pyotp.TOTP(KEY)
         token = totp.now()
         try:
@@ -101,7 +101,7 @@ class Autentificao:
                 "/html/body/div[1]/div[1]/div[2]/div/div[2]/div/div/div[2]/div/div[1]/div/form/span/section/div/div/div[2]/div/div[1]/div/div[1]/input"
             ).send_keys(token)
         except TimeoutException:
-            driver.get("https://owner-conversion.quintoandar.com.br/register/new/owner")
+            driver.get("")
         time.sleep(2)
         driver.find_element_by_xpath(
             "/html/body/div[1]/div[1]/div[2]/div/div[2]/div/div/div[2]/div/div[2]/div/div[1]/div/div/button"
