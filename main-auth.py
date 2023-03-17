@@ -45,7 +45,7 @@ try:
         )
     )
 except TimeoutException:
-    driver.get("https://owner-conversion.quintoandar.com.br/register/new/owner")
+    driver.get("")
 print("click login_sso")
 
 Autentificao.autentificar(driver)
