@@ -68,7 +68,7 @@ class Foto:
                 try:
                     print('enter url "fotografo/uploadFoto"')
                     driver.get(
-                        "https://user.quintoandar.com.br/fotografo/uploadFoto/"
+                        ""
                         + id_imovel
                     )
                 except:
@@ -76,7 +76,7 @@ class Foto:
                         time.sleep(3)
                         print('retry url "fotografo/uploadFoto"')
                         driver.get(
-                            "https://user.quintoandar.com.br/fotografo/uploadFoto/"
+                            ""
                             + id_imovel
                         )
                     except:
@@ -279,13 +279,13 @@ class Foto:
                     # tenta entrar 2x na pag publicacao, se n conseguir o script para
                     try:
                         driver.get(
-                            "https://user.quintoandar.com.br/imovel/editar/"
+                            ""
                             + id_imovel
                             + "/fotos"
                         )
                     except:
                         driver.get(
-                            "https://user.quintoandar.com.br/imovel/editar/"
+                            ""
                             + id_imovel
                             + "/fotos"
                         )
