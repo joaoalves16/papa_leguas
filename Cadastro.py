@@ -230,7 +230,7 @@ class Cadastro:
                                         index=False,
                                     )
                                     driver.get(
-                                        "https://owner-conversion.quintoandar.com.br/register/new/owner"
+                                        ""
                                     )
                                     continue
                                 elif check_exists_by_xpath(
@@ -249,7 +249,7 @@ class Cadastro:
                                         index=False,
                                     )
                                     driver.get(
-                                        "https://owner-conversion.quintoandar.com.br/register/new/owner"
+                                        ""
                                     )
                                     continue
                                 else:
@@ -291,7 +291,7 @@ class Cadastro:
                                             ] = "Elemento não encontrado na pagina 'Localização'"
                                             dados[42][index] = "1"
                                             driver.get(
-                                                "https://owner-conversion.quintoandar.com.br/register/new/owner"
+                                                ""
                                             )
                                             continue
                                     except TimeoutException:
@@ -300,7 +300,7 @@ class Cadastro:
                                         ] = "Elemento não encontrado na pagina 'Localização'"
                                         dados[42][index] = "1"
                                         driver.get(
-                                            "https://owner-conversion.quintoandar.com.br/register/new/owner"
+                                            ""
                                         )
                                         continue
                             except TimeoutException:
@@ -309,7 +309,7 @@ class Cadastro:
                                 ] = "Elemento não encontrado na pagina 'Localização'"
                                 dados[42][index] = "1"
                                 driver.get(
-                                    "https://owner-conversion.quintoandar.com.br/register/new/owner"
+                                    ""
                                 )
                                 continue
                         elif tipo == "Apartamento" or tipo == "Kitnet":
@@ -373,7 +373,7 @@ class Cadastro:
                                         index=False,
                                     )
                                     driver.get(
-                                        "https://owner-conversion.quintoandar.com.br/register/new/owner"
+                                        ""
                                     )
                                     continue
                                 elif check_exists_by_xpath(
@@ -392,7 +392,7 @@ class Cadastro:
                                         index=False,
                                     )
                                     driver.get(
-                                        "https://owner-conversion.quintoandar.com.br/register/new/owner"
+                                        ""
                                     )
                                     continue
                                 elif check_exists_by_xpath(
@@ -411,7 +411,7 @@ class Cadastro:
                                         index=False,
                                     )
                                     driver.get(
-                                        "https://owner-conversion.quintoandar.com.br/register/new/owner"
+                                        ""
                                     )
                                     continue
                                 else:
@@ -455,7 +455,7 @@ class Cadastro:
                                             ] = "Elemento não encontrado na pagina 'Localização'"
                                             dados[42][index] = "1"
                                             driver.get(
-                                                "https://owner-conversion.quintoandar.com.br/register/new/owner"
+                                                ""
                                             )
                                             continue
                                     except TimeoutException:
@@ -464,7 +464,7 @@ class Cadastro:
                                         ] = "Elemento não encontrado na pagina 'Localização'"
                                         dados[42][index] = "1"
                                         driver.get(
-                                            "https://owner-conversion.quintoandar.com.br/register/new/owner"
+                                            ""
                                         )
                                         continue
                             except TimeoutException:
@@ -473,7 +473,7 @@ class Cadastro:
                                 ] = "Elemento não encontrado na pagina 'Localização'"
                                 dados[42][index] = "1"
                                 driver.get(
-                                    "https://owner-conversion.quintoandar.com.br/register/new/owner"
+                                    ""
                                 )
                                 continue
                         try:
@@ -797,7 +797,7 @@ class Cadastro:
                                 index=False,
                             )
                             driver.get(
-                                "https://owner-conversion.quintoandar.com.br/register/new/owner"
+                                ""
                             )
                             continue
                         try:
@@ -834,7 +834,7 @@ class Cadastro:
                                 index=False,
                             )
                             driver.get(
-                                "https://owner-conversion.quintoandar.com.br/register/new/owner"
+                                ""
                             )
                             continue
                         try:
@@ -908,7 +908,7 @@ class Cadastro:
                                     index=False,
                                 )
                                 driver.get(
-                                    "https://owner-conversion.quintoandar.com.br/register/new/owner"
+                                    ""
                                 )
                                 continue
                         except TimeoutException:
@@ -923,7 +923,7 @@ class Cadastro:
                                 index=False,
                             )
                             driver.get(
-                                "https://owner-conversion.quintoandar.com.br/register/new/owner"
+                                ""
                             )
                             continue
 
@@ -958,9 +958,9 @@ class Cadastro:
                             )
                             time.sleep(2)
                             driver.get(
-                                "https://owner-conversion.quintoandar.com.br/register/new/owner"
+                                ""
                             )
-                            # driver.get("https://crm.quintoandar.com.br/tarefas/")
+                            # driver.get("")
                             # try:
                             #    WebDriverWait(driver, 60).until(
                             #        ec.visibility_of_element_located(
@@ -992,7 +992,7 @@ class Cadastro:
                             #            index=False,
                             #        )
                             #        driver.get(
-                            #            "https://owner-conversion.quintoandar.com.br/register/new/owner"
+                            #            ""
                             #        )
                             #        continue
                             #    driver.find_element_by_xpath(
@@ -1035,7 +1035,7 @@ class Cadastro:
                             #                index=False,
                             #            )
                             #            driver.get(
-                            #                "https://owner-conversion.quintoandar.com.br/register/new/owner"
+                            #                ""
                             #            )
                             #            continue
                             #        driver.find_element_by_xpath(
@@ -1055,7 +1055,7 @@ class Cadastro:
                             #        driver.close()
                             #        driver.switch_to.window(driver.window_handles[0])
                             #        driver.get(
-                            #            "https://owner-conversion.quintoandar.com.br/register/new/owner"
+                            #            ""
                             #        )
                             #    except TimeoutException:
                             #        dados[43][
@@ -1068,7 +1068,7 @@ class Cadastro:
                             #            index=False,
                             #        )
                             #        driver.get(
-                            #            "https://owner-conversion.quintoandar.com.br/register/new/owner"
+                            #            ""
                             #        )
                             #        continue
                             # except TimeoutException:
@@ -1080,7 +1080,7 @@ class Cadastro:
                             #        index=False,
                             #    )
                             #    driver.get(
-                            #        "https://owner-conversion.quintoandar.com.br/register/new/owner"
+                            #        ""
                             #    )
                             #    continue
                         except TimeoutException:
@@ -1092,7 +1092,7 @@ class Cadastro:
                                 index=False,
                             )
                             driver.get(
-                                "https://owner-conversion.quintoandar.com.br/register/new/owner"
+                                ""
                             )
                             continue
                     except TimeoutException:
@@ -1105,7 +1105,7 @@ class Cadastro:
                             index=False,
                         )
                         driver.get(
-                            "https://owner-conversion.quintoandar.com.br/register/new/owner"
+                            ""
                         )
                 except TimeoutException:
                     dados[43][index] = "Pagina de proprietario não carregou"
@@ -1117,5 +1117,5 @@ class Cadastro:
                         index=False,
                     )
                     driver.get(
-                        "https://owner-conversion.quintoandar.com.br/register/new/owner"
+                        ""
                     )
