@@ -34,7 +34,7 @@ chrome_options.add_argument("--disable-setuid-sandbox")
 
 s = Service()
 driver = webdriver.Chrome(service=s, options=chrome_options)
-driver.get("https://crm.quintoandar.com.br/tarefas/")
+driver.get("")
 
 # AUTENTICACAO
 print(":: start AUTENTICACAO ::")
