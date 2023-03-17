@@ -45,7 +45,7 @@ chrome_options.add_argument(f"user-agent={user_agent}")
 
 s = Service()
 driver = webdriver.Chrome(service=s, options=chrome_options)
-driver.get("https://owner-conversion.quintoandar.com.br/register/new/owner")
+driver.get("")
 # AUTENTICACAO
 print(":: start AUTENTICACAO ::")
 Autentificao.autentificar(driver)
@@ -56,7 +56,7 @@ Autentificao.autentificar(driver)
 #        )
 #    )
 # except TimeoutException:
-#    driver.get("https://owner-conversion.quintoandar.com.br/register/new/owner")
+#    driver.get("")
 # print("click login_sso")
 # driver.find_element_by_xpath(
 #    "/html/body/div/div[2]/div/div/div[1]/div[2]/ul/li/a"
@@ -81,7 +81,7 @@ def run_cadastro(dados, driver):
         driver.save_screenshot(
             "./erros/" + datetime.today().strftime("%Y-%m-%d %H:%M" + ".png")
         )
-        driver.get("https://owner-conversion.quintoandar.com.br/register/new/owner")
+        driver.get("")
         run_cadastro(dados, driver)
 
 
@@ -91,7 +91,7 @@ run_cadastro(dados, driver)
 # FOTO
 # print("start foto");
 # try:
-#     driver.get("https://user.quintoandar.com.br/admin/menu")
+#     driver.get("")
 #     Foto.cadastrarFotos(dados, fotos, driver)
 # except:
 #     driver.save_screenshot("./erros/foto-"+datetime.today().strftime("%Y-%m-%d %H:%M"+'.png'))
